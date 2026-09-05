@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赛尔号 GM 管理系统</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --sidebar-width: 250px; --primary: #667eea; }
+        body { margin: 0; font-family: 'Microsoft YaHei', sans-serif; background: #f5f7fa; }
+        .sidebar { position: fixed; top: 0; left: 0; height: 100vh; width: var(--sidebar-width); 
+                   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 0; }
+        .sidebar h3 { padding: 0 20px; margin-bottom: 30px; }
+        .nav-item { padding: 15px 20px; cursor: pointer; transition: 0.3s; }
+        .nav-item:hover, .nav-item.active { background: rgba(255,255,255,0.2); }
+        .main-content { margin-left: var(--sidebar-width); padding: 20px; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .user-item { padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; background: white; margin-bottom: 10px; border-radius: 8px; }
+        .user-item:hover { background: #f8f9fa; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .detail-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .detail-card h5 { border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 15px; }
+        .item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+        .item-box { border: 1px solid #ddd; border-radius: 8px; padding: 10px; text-align: center; }
+        .pet-card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 10px; }
+        .stat-box { text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .stat-value { font-size: 32px; font-weight: bold; color: var(--primary); }
+        .scroll-panel { max-height: 400px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h3>🎮 赛尔号GM</h3>
+        <div class="nav-item active" onclick="showSection('dashboard')">📊 仪表盘</div>
+        <div class="nav-item" onclick="showSection('users')">👥 用户管理</div>
+        <div class="nav-item" onclick="showSection('pets')">🥚 精灵管理</div>
+        <div class="nav-item" onclick="showSection('gacha')">🎰 扭蛋机</div>
+        <div class="nav-item" onclick="showSection('fusion')">🔮 元神赋形</div>
+        <div class="nav-item" onclick="showSection('maps')">🗺️ 地图管理</div>
+    </div>
+    
+    <div class="main-content">
+        <!-- 仪表盘 -->
+        <div id="dashboard" class="content-section active">
+            <h2>仪表盘</h2>
+            <div class="row mt-4">
+                <div class="col-md-3"><div class="stat-box"><div class="stat-value" id="totalUsers">0</div><div>总用户数</div></div></div>
+                <div class="col-md-3"><div class="stat-box"><div class="stat-value" id="onlineUsers">0</div><div>在线用户</div></div></div>
+                <div class="col-md-3"><div class="stat-box"><div class="stat-value" id="totalPets">0</div><div>总精灵数</div></div></div>
+                <div class="col-md-3"><div class="stat-box"><div class="stat-value" id="totalCoins">0</div><div>总金币</div></div></div>
+            </div>
+        </div>
+        
+        <!-- 用户管理 -->
+        <div id="users" class="content-section">
+            <h2>用户管理</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="detail-card">
+                        <h5>查找账号</h5>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="searchKeyword" placeholder="用户ID / 昵称 / 邮箱" onkeyup="if(event.key==='Enter')loadUsers()">
+                            <button class="btn btn-primary" onclick="loadUsers()">搜索</button>
+                        </div>
+                        <h5>用户列表</h5>
+                        <div id="userList"></div>
+                    </div>
+                    <div class="detail-card mt-3">
+                        <h5>新增账号</h5>
+                        <div class="mb-2"><input type="text" class="form-control form-control-sm" id="newEmail" placeholder="邮箱"></div>
+                        <div class="mb-2"><input type="text" class="form-control form-control-sm" id="newPassword" placeholder="密码"></div>
+                        <div class="mb-2"><input type="text" class="form-control form-control-sm" id="newNickname" placeholder="昵称（可选）"></div>
+                        <button class="btn btn-success btn-sm w-100" onclick="createAccount()">创建账号</button>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div id="userDetail" style="display:none;">
+                        <div class="detail-card">
+                            <h5>基本信息</h5>
+                            <div class="row">
+                                <div class="col-md-6"><strong>用户ID:</strong> <span id="detailUserId"></span></div>
+                                <div class="col-md-6"><strong>邮箱:</strong> <span id="detailEmail"></span></div>
+                                <div class="col-md-6"><strong>昵称:</strong> <input type="text" class="form-control form-control-sm" id="detailNick"></div>
+                                <div class="col-md-6"><strong>密码:</strong> <input type="text" class="form-control form-control-sm" id="detailPassword" placeholder="留空不修改"></div>
+                                <div class="col-md-6"><strong>金币:</strong> <input type="number" class="form-control form-control-sm" id="detailCoins"></div>
+                                <div class="col-md-6"><strong>金豆:</strong> <input type="number" class="form-control form-control-sm" id="detailGold"></div>
+                                <div class="col-md-6"><strong>体力:</strong> <input type="number" class="form-control form-control-sm" id="detailEnergy"></div>
+                            </div>
+                            <button class="btn btn-primary btn-sm mt-3" onclick="saveUserInfo()">保存修改</button>
+                            <button class="btn btn-warning btn-sm mt-3 ms-2" onclick="showBlacklistModal()">黑名单</button>
+                            <button class="btn btn-danger btn-sm mt-3 ms-2" onclick="deleteAccount()">删除该账号</button>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h5>经验分配器</h5>
+                            <div class="mb-2"><strong>当前经验池：</strong><span id="detailExpPool">0</span></div>
+                            <div class="input-group mb-2">
+                                <input type="number" class="form-control form-control-sm" id="expAddAmount" placeholder="发放数量" min="0" value="100">
+                                <button class="btn btn-success btn-sm" onclick="gmExpAdd()">发放经验</button>
+                            </div>
+                            <div class="input-group">
+                                <input type="number" class="form-control form-control-sm" id="expSetValue" placeholder="设为数值" min="0">
+                                <button class="btn btn-primary btn-sm" onclick="gmExpSet()">设置经验</button>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <h5>发放称号</h5>
+                            <div class="mb-2"><strong>当前称号：</strong><span id="detailCurTitle">-</span></div>
+                            <div class="input-group mb-2">
+                                <select class="form-select form-select-sm" id="gmTitleSelect">
+                                    <option value="">加载中...</option>
+                                </select>
+                                <button class="btn btn-success btn-sm" onclick="gmTitleGrant()">发放称号</button>
+                            </div>
+                            <small class="text-muted">选择称号后点击发放，玩家将获得该称号；在线时会收到获得称号提示。</small>
+                        </div>
+
+                        <div class="detail-card">
+                            <h5>NoNo / 超能信息管理</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small"><strong>超能等级</strong> <span class="text-muted">(0-12)</span></label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control" id="nonoSuperLevel" min="0" max="12" placeholder="0-12">
+                                        <button class="btn btn-outline-secondary" type="button" onclick="adjustNonoLevel(1)">+1</button>
+                                        <button class="btn btn-outline-secondary" type="button" onclick="adjustNonoLevel(-1)">-1</button>
+                                    </div>
+                                    <small class="text-muted">修改后将自动更新形态和显示等级</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small"><strong>能量值</strong></label>
+                                    <input type="number" class="form-control form-control-sm" id="nonoEnergy" min="0" placeholder="能量值">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small"><strong>NoNo经验</strong></label>
+                                    <input type="number" class="form-control form-control-sm" id="nonoExp" min="0" placeholder="NoNo经验">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small"><strong>技能点 (IQ)</strong></label>
+                                    <input type="number" class="form-control form-control-sm" id="nonoSkillPoints" min="0" placeholder="技能点">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small"><strong>状态</strong></label>
+                                    <select class="form-select form-select-sm" id="nonoStatus">
+                                        <option value="0">0 - 未跟随</option>
+                                        <option value="1">1 - 跟随</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small"><strong>一键开通超能NoNo</strong></label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control" id="nonoActivateDays" min="1" value="30" placeholder="天数">
+                                        <button class="btn btn-success" type="button" onclick="activateSuperNono()">开通</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-top pt-2 mt-2">
+                                <div class="row small text-muted">
+                                    <div class="col-md-3"><strong>当前形态:</strong> <span id="nonoTypeDisplay">-</span></div>
+                                    <div class="col-md-3"><strong>显示等级:</strong> <span id="nonoVipLevelDisplay">-</span></div>
+                                    <div class="col-md-3"><strong>超能剩余:</strong> <span id="nonoVipLeftDaysDisplay">-</span></div>
+                                    <div class="col-md-3"><strong>到期时间:</strong> <span id="nonoVipEndTimeDisplay">-</span></div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <button class="btn btn-primary btn-sm" onclick="saveNonoInfo()">保存NoNo信息</button>
+                                <button class="btn btn-secondary btn-sm ms-2" onclick="refreshNonoDisplay()">刷新显示</button>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <h5>背包精灵管理 <button class="btn btn-success btn-sm float-end" onclick="showAddPetModal()">添加精灵</button></h5>
+                            <div id="userPets"></div>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h5>仓库精灵管理</h5>
+                            <div id="storagePets"></div>
+                            <div id="storagePetsPager" class="mt-2 small text-muted" style="display:none;"></div>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h5>物品管理 <button class="btn btn-success btn-sm float-end" onclick="showAddItemModal()">添加物品</button></h5>
+                            <div id="userItems" class="item-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 精灵管理 -->
+        <div id="pets" class="content-section">
+            <h2>精灵管理</h2>
+            <div class="detail-card mt-4">
+                <h5>精灵数据库 <span class="float-end"><button class="btn btn-primary btn-sm" onclick="reloadPetDatabase()">刷新</button></span></h5>
+                <input type="text" class="form-control mb-3" placeholder="搜索精灵ID或名称..." onkeyup="searchPets(this.value)">
+                <div id="petDatabase" class="scroll-panel"></div>
+            </div>
+            <div class="detail-card mt-4">
+                <h5>道具数据库</h5>
+                <input type="text" class="form-control mb-3" placeholder="搜索道具ID或名称..." onkeyup="searchItems(this.value)">
+                <div id="itemDatabase" class="scroll-panel"></div>
+            </div>
+        </div>
+        
+        <!-- 扭蛋机 -->
+        <div id="gacha" class="content-section">
+            <h2>扭蛋机</h2>
+            <div class="detail-card mt-4">
+                <h5>当前奖励池 <span class="float-end"><button class="btn btn-success btn-sm" onclick="gachaShowAdd()">添加奖励</button> <button class="btn btn-primary btn-sm" onclick="gachaLoadList()">刷新</button> <button class="btn btn-secondary btn-sm" onclick="gachaSaveConfig()">保存到文件</button></span></h5>
+                <p class="text-muted small">权重越大抽中概率越高，金豆道具建议权重低于赛尔豆道具。</p>
+                <div id="gachaListContainer" class="mt-3"></div>
+            </div>
+        </div>
+        
+        <!-- 元神赋形 -->
+        <div id="fusion" class="content-section">
+            <h2>元神赋形</h2>
+            <div class="detail-card mt-4">
+                <h5>元神赋形配置</h5>
+                <p class="text-muted small">仅内存生效，用于测试；重启进程后恢复默认。</p>
+                <div class="mb-3">
+                    <label for="fusion-transform-hours" class="form-label">元神赋形时间（小时）</label>
+                    <input type="number" id="fusion-transform-hours" class="form-control" min="0.01" step="0.01" value="1" style="max-width:120px;">
+                    <div class="mt-2">
+                        <span class="text-muted me-2">快捷：</span>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setFusionPreset(1/60)">1 分钟</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setFusionPreset(5/60)">5 分钟</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setFusionPreset(1)">1 小时</button>
+                        <button type="button" class="btn btn-primary btn-sm ms-2" onclick="saveFusionTransformOnly()">仅保存赋形时间</button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="fusion-formulas-json" class="form-label">融合公式（JSON，可选）</label>
+                    <textarea id="fusion-formulas-json" class="form-control font-monospace" rows="6" style="font-size:12px;"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="saveFusionConfig()">保存全部配置</button>
+            </div>
+        </div>
+        
+        <!-- 地图管理 -->
+        <div id="maps" class="content-section">
+            <h2>地图管理</h2>
+            <div class="detail-card mt-4">
+                <h5>地图精灵配置</h5>
+                <div id="mapConfig"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 模态框 -->
+    <div class="modal fade" id="addPetModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">添加精灵</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label>精灵ID</label>
+                        <input type="text" class="form-control" id="addPetId" list="petOptions" placeholder="例如: 166 闪光波克尔">
+                        <datalist id="petOptions"></datalist>
+                        <div class="form-text">可直接输入ID，或从下拉列表中选择“ID 中文名”。</div>
+                    </div>
+                    <div class="mb-3">
+                        <label>等级</label>
+                        <input type="number" class="form-control" id="addPetLevel" value="1" min="1" max="100">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="addPetShiny">
+                        <label class="form-check-label" for="addPetShiny">是否是异色</label>
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        <label>初始性格（可选）</label>
+                        <select class="form-select" id="addPetNature">
+                            <option value="">默认(0)</option>
+                            <option value="0">0 - 孤独 - 攻击↑ 防御↓</option>
+                            <option value="1">1 - 勇敢 - 攻击↑ 速度↓</option>
+                            <option value="2">2 - 固执 - 攻击↑ 特攻↓</option>
+                            <option value="3">3 - 调皮 - 攻击↑ 特防↓</option>
+                            <option value="4">4 - 胆小 - 速度↑ 攻击↓</option>
+                            <option value="5">5 - 急躁 - 速度↑ 防御↓</option>
+                            <option value="6">6 - 开朗 - 速度↑ 特攻↓</option>
+                            <option value="7">7 - 天真 - 速度↑ 特防↓</option>
+                            <option value="8">8 - 大胆 - 防御↑ 攻击↓</option>
+                            <option value="9">9 - 悠闲 - 防御↑ 速度↓</option>
+                            <option value="10">10 - 顽皮 - 防御↑ 特攻↓</option>
+                            <option value="11">11 - 无虑 - 防御↑ 特防↓</option>
+                            <option value="12">12 - 保守 - 特攻↑ 攻击↓</option>
+                            <option value="13">13 - 稳重 - 特攻↑ 防御↓</option>
+                            <option value="14">14 - 冷静 - 特攻↑ 速度↓</option>
+                            <option value="15">15 - 马虎 - 特攻↑ 特防↓</option>
+                            <option value="16">16 - 沉着 - 特防↑ 攻击↓</option>
+                            <option value="17">17 - 温顺 - 特防↑ 防御↓</option>
+                            <option value="18">18 - 狂妄 - 特防↑ 速度↓</option>
+                            <option value="19">19 - 慎重 - 特防↑ 特攻↓</option>
+                            <option value="20">20 - 害羞 - 平衡（无加成）</option>
+                            <option value="21">21 - 浮躁 - 平衡（无加成）</option>
+                            <option value="22">22 - 坦率 - 平衡（无加成）</option>
+                            <option value="23">23 - 实干 - 平衡（无加成）</option>
+                            <option value="24">24 - 认真 - 平衡（无加成）</option>
+                        </select>
+                        <div class="form-text">一加一减对应表，仅影响战斗属性。</div>
+                    </div>
+                    <div class="mb-3">
+                        <label>初始特性（可选）</label>
+                        <select class="form-select" id="addPetTrait">
+                            <option value="">不设置特性</option>
+                            <option value="-1">随机分配一个特性</option>
+                            <option value="1006">1006 - 叶绿</option>
+                            <option value="1007">1007 - 流水</option>
+                            <option value="1008">1008 - 炎火</option>
+                            <option value="1009">1009 - 飞空</option>
+                            <option value="1010">1010 - 蓄电</option>
+                            <option value="1011">1011 - 机能</option>
+                            <option value="1012">1012 - 碎裂</option>
+                            <option value="1013">1013 - 平衡</option>
+                            <option value="1014">1014 - 冰霜</option>
+                            <option value="1015">1015 - 魔幻</option>
+                            <option value="1016">1016 - 战意</option>
+                            <option value="1017">1017 - 光环</option>
+                            <option value="1018">1018 - 黑夜</option>
+                            <option value="1019">1019 - 奇异</option>
+                            <option value="1020">1020 - 威严</option>
+                            <option value="1021">1021 - 圣灵</option>
+                            <option value="1022">1022 - 精准</option>
+                            <option value="1023">1023 - 会心</option>
+                            <option value="1024">1024 - 坚硬</option>
+                            <option value="1025">1025 - 回避</option>
+                            <option value="1026">1026 - 顽强</option>
+                            <option value="1027">1027 - 瞬杀</option>
+                            <option value="1028">1028 - 回神</option>
+                            <option value="1029">1029 - 带电</option>
+                            <option value="1030">1030 - 中毒</option>
+                            <option value="1031">1031 - 高热</option>
+                            <option value="1032">1032 - 冰冷</option>
+                            <option value="1033">1033 - 阴森</option>
+                            <option value="1034">1034 - 睡眠</option>
+                            <option value="1035">1035 - 反抗</option>
+                            <option value="1036">1036 - 反驳</option>
+                            <option value="1037">1037 - 忽略</option>
+                            <option value="1038">1038 - 草率</option>
+                            <option value="1039">1039 - 汲取</option>
+                            <option value="1040">1040 - 慌张</option>
+                            <option value="1041">1041 - 反击</option>
+                            <option value="1042">1042 - 抵抗</option>
+                            <option value="1043">1043 - 反攻</option>
+                            <option value="1044">1044 - 坚韧</option>
+                            <option value="1045">1045 - 借风</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="mb-2"><strong>学习力（可选）</strong> <span class="text-muted small">单项 0-255，总和 ≤ 510</span></div>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>体力</label><input type="number" class="form-control form-control-sm add-ev" id="addEvHP" min="0" max="255" value="0"></div>
+                        <div class="col-md-6"><label>攻击</label><input type="number" class="form-control form-control-sm add-ev" id="addEvAtk" min="0" max="255" value="0"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>防御</label><input type="number" class="form-control form-control-sm add-ev" id="addEvDef" min="0" max="255" value="0"></div>
+                        <div class="col-md-6"><label>特攻</label><input type="number" class="form-control form-control-sm add-ev" id="addEvSpAtk" min="0" max="255" value="0"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>特防</label><input type="number" class="form-control form-control-sm add-ev" id="addEvSpDef" min="0" max="255" value="0"></div>
+                        <div class="col-md-6"><label>速度</label><input type="number" class="form-control form-control-sm add-ev" id="addEvSpd" min="0" max="255" value="0"></div>
+                    </div>
+                    <div class="mb-2"><strong>总学习力：</strong><span id="addEvSum">0</span> / 510</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="addPet()">添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="addItemModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">添加物品</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label>物品ID</label>
+                        <input type="text" class="form-control" id="addItemId" list="itemOptions" placeholder="例如: 300001 精灵胶囊">
+                        <datalist id="itemOptions"></datalist>
+                        <div class="form-text">可直接输入ID，或从下拉列表中选择“ID 中文名”。</div>
+                    </div>
+                    <div class="mb-3"><label>数量</label><input type="number" class="form-control" id="addItemCount" value="1" min="1"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="addItem()">添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editPetSkillsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">修改精灵技能（4个槽，填技能ID，0表示保留当前）</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editPetCatchTime" value="0">
+                    <div class="mb-2"><label>技能1 <span id="editSkillName0" class="text-muted small"></span></label><input type="number" class="form-control form-control-sm" id="editSkill0" placeholder="技能ID"></div>
+                    <div class="mb-2"><label>技能2 <span id="editSkillName1" class="text-muted small"></span></label><input type="number" class="form-control form-control-sm" id="editSkill1" placeholder="技能ID"></div>
+                    <div class="mb-2"><label>技能3 <span id="editSkillName2" class="text-muted small"></span></label><input type="number" class="form-control form-control-sm" id="editSkill2" placeholder="技能ID"></div>
+                    <div class="mb-2"><label>技能4 <span id="editSkillName3" class="text-muted small"></span></label><input type="number" class="form-control form-control-sm" id="editSkill3" placeholder="技能ID"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="savePetSkills()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改精灵特性 -->
+    <div class="modal fade" id="editPetTraitModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">修改精灵特性</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editTraitCatchTime" value="0">
+                    <input type="hidden" id="editTraitFromStorage" value="0">
+                    <div class="mb-3">
+                        <label>特性</label>
+                        <select class="form-select" id="editTraitSelect">
+                            <option value="">清除特性</option>
+                            <option value="-1">随机分配一个特性</option>
+                            <option value="1006">1006 - 叶绿</option>
+                            <option value="1007">1007 - 流水</option>
+                            <option value="1008">1008 - 炎火</option>
+                            <option value="1009">1009 - 飞空</option>
+                            <option value="1010">1010 - 蓄电</option>
+                            <option value="1011">1011 - 机能</option>
+                            <option value="1012">1012 - 碎裂</option>
+                            <option value="1013">1013 - 平衡</option>
+                            <option value="1014">1014 - 冰霜</option>
+                            <option value="1015">1015 - 魔幻</option>
+                            <option value="1016">1016 - 战意</option>
+                            <option value="1017">1017 - 光环</option>
+                            <option value="1018">1018 - 黑夜</option>
+                            <option value="1019">1019 - 奇异</option>
+                            <option value="1020">1020 - 威严</option>
+                            <option value="1021">1021 - 圣灵</option>
+                            <option value="1022">1022 - 精准</option>
+                            <option value="1023">1023 - 会心</option>
+                            <option value="1024">1024 - 坚硬</option>
+                            <option value="1025">1025 - 回避</option>
+                            <option value="1026">1026 - 顽强</option>
+                            <option value="1027">1027 - 瞬杀</option>
+                            <option value="1028">1028 - 回神</option>
+                            <option value="1029">1029 - 带电</option>
+                            <option value="1030">1030 - 中毒</option>
+                            <option value="1031">1031 - 高热</option>
+                            <option value="1032">1032 - 冰冷</option>
+                            <option value="1033">1033 - 阴森</option>
+                            <option value="1034">1034 - 睡眠</option>
+                            <option value="1035">1035 - 反抗</option>
+                            <option value="1036">1036 - 反驳</option>
+                            <option value="1037">1037 - 忽略</option>
+                            <option value="1038">1038 - 草率</option>
+                            <option value="1039">1039 - 汲取</option>
+                            <option value="1040">1040 - 慌张</option>
+                            <option value="1041">1041 - 反击</option>
+                            <option value="1042">1042 - 抵抗</option>
+                            <option value="1043">1043 - 反攻</option>
+                            <option value="1044">1044 - 坚韧</option>
+                            <option value="1045">1045 - 借风</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="savePetTrait()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 黑名单管理 -->
+    <div class="modal fade" id="blacklistModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">黑名单管理（当前用户拉黑的用户）</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="blacklistList" class="mb-3"></div>
+                    <hr>
+                    <label>拉黑用户（填入对方用户ID）</label>
+                    <div class="input-group mb-2">
+                        <input type="number" class="form-control" id="blacklistUserId" placeholder="用户ID">
+                        <button class="btn btn-danger" onclick="addToBlacklist()">添加拉黑</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改精灵性格 -->
+    <div class="modal fade" id="editPetNatureModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">修改精灵性格</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editNatureCatchTime" value="0">
+                    <input type="hidden" id="editNatureFromStorage" value="0">
+                    <div class="mb-3">
+                        <label>性格（一加一减）</label>
+                        <select class="form-select" id="editNatureSelect">
+                            <option value="0">0 - 孤独 - 攻击↑ 防御↓</option>
+                            <option value="1">1 - 勇敢 - 攻击↑ 速度↓</option>
+                            <option value="2">2 - 固执 - 攻击↑ 特攻↓</option>
+                            <option value="3">3 - 调皮 - 攻击↑ 特防↓</option>
+                            <option value="4">4 - 胆小 - 速度↑ 攻击↓</option>
+                            <option value="5">5 - 急躁 - 速度↑ 防御↓</option>
+                            <option value="6">6 - 开朗 - 速度↑ 特攻↓</option>
+                            <option value="7">7 - 天真 - 速度↑ 特防↓</option>
+                            <option value="8">8 - 大胆 - 防御↑ 攻击↓</option>
+                            <option value="9">9 - 悠闲 - 防御↑ 速度↓</option>
+                            <option value="10">10 - 顽皮 - 防御↑ 特攻↓</option>
+                            <option value="11">11 - 无虑 - 防御↑ 特防↓</option>
+                            <option value="12">12 - 保守 - 特攻↑ 攻击↓</option>
+                            <option value="13">13 - 稳重 - 特攻↑ 防御↓</option>
+                            <option value="14">14 - 冷静 - 特攻↑ 速度↓</option>
+                            <option value="15">15 - 马虎 - 特攻↑ 特防↓</option>
+                            <option value="16">16 - 沉着 - 特防↑ 攻击↓</option>
+                            <option value="17">17 - 温顺 - 特防↑ 防御↓</option>
+                            <option value="18">18 - 狂妄 - 特防↑ 速度↓</option>
+                            <option value="19">19 - 慎重 - 特防↑ 特攻↓</option>
+                            <option value="20">20 - 害羞 - 平衡（无加成）</option>
+                            <option value="21">21 - 浮躁 - 平衡（无加成）</option>
+                            <option value="22">22 - 坦率 - 平衡（无加成）</option>
+                            <option value="23">23 - 实干 - 平衡（无加成）</option>
+                            <option value="24">24 - 认真 - 平衡（无加成）</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="savePetNature()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改精灵学习力（单项0-255，总和≤510） -->
+    <div class="modal fade" id="editPetEVModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">修改精灵学习力</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editEVCatchTime" value="0">
+                    <input type="hidden" id="editEVFromStorage" value="0">
+                    <p class="text-muted small">单项 0-255，总和不超过 510</p>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>体力</label><input type="number" class="form-control form-control-sm ev-input" id="editEvHP" min="0" max="255" value="0"></div>
+                        <div class="col-md-6"><label>攻击</label><input type="number" class="form-control form-control-sm ev-input" id="editEvAtk" min="0" max="255" value="0"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>防御</label><input type="number" class="form-control form-control-sm ev-input" id="editEvDef" min="0" max="255" value="0"></div>
+                        <div class="col-md-6"><label>特攻</label><input type="number" class="form-control form-control-sm ev-input" id="editEvSpAtk" min="0" max="255" value="0"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>特防</label><input type="number" class="form-control form-control-sm ev-input" id="editEvSpDef" min="0" max="255" value="0"></div>
+                        <div class="col-md-6"><label>速度</label><input type="number" class="form-control form-control-sm ev-input" id="editEvSpd" min="0" max="255" value="0"></div>
+                    </div>
+                    <div class="mb-2"><strong>总学习力：</strong><span id="editEvSum">0</span> / 510</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="savePetEV()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 编辑精灵属性（统一弹窗，点击某只精灵后打开） -->
+    <div class="modal fade" id="editPetAttrModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">编辑精灵属性</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editAttrCatchTime" value="0">
+                    <input type="hidden" id="editAttrFromStorage" value="0">
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>定位 (catchTime)</label><input type="text" class="form-control form-control-sm" id="editAttrCatchTimeDisp" readonly></div>
+                        <div class="col-md-6"><label>精灵ID</label><input type="number" class="form-control form-control-sm" id="editAttrPetId" readonly></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>名称</label><input type="text" class="form-control form-control-sm" id="editAttrName" placeholder="精灵名称"></div>
+                        <div class="col-md-6"><label>等级</label><input type="number" class="form-control form-control-sm" id="editAttrLevel" min="1" max="100"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>经验</label><input type="number" class="form-control form-control-sm" id="editAttrExp" min="0"></div>
+                        <div class="col-md-6"><label>个体值 DV</label><input type="number" class="form-control form-control-sm" id="editAttrDv" min="0" max="31"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6"><label>性格</label>
+                            <select class="form-select form-select-sm" id="editAttrNature">
+                                <option value="0">0 - 孤独</option><option value="1">1 - 勇敢</option><option value="2">2 - 固执</option><option value="3">3 - 调皮</option>
+                                <option value="4">4 - 胆小</option><option value="5">5 - 急躁</option><option value="6">6 - 开朗</option><option value="7">7 - 天真</option>
+                                <option value="8">8 - 大胆</option><option value="9">9 - 悠闲</option><option value="10">10 - 顽皮</option><option value="11">11 - 无虑</option>
+                                <option value="12">12 - 保守</option><option value="13">13 - 稳重</option><option value="14">14 - 冷静</option><option value="15">15 - 马虎</option>
+                                <option value="16">16 - 沉着</option><option value="17">17 - 温顺</option><option value="18">18 - 狂妄</option><option value="19">19 - 慎重</option>
+                                <option value="20">20 - 害羞</option><option value="21">21 - 浮躁</option><option value="22">22 - 坦率</option><option value="23">23 - 实干</option><option value="24">24 - 认真</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6"><label>特性</label>
+                            <select class="form-select form-select-sm" id="editAttrTrait">
+                                <option value="">无</option><option value="-1">随机</option>
+                                <option value="1006">1006 - 叶绿</option><option value="1007">1007 - 流水</option><option value="1008">1008 - 炎火</option><option value="1009">1009 - 飞空</option>
+                                <option value="1010">1010 - 蓄电</option><option value="1011">1011 - 机能</option><option value="1012">1012 - 碎裂</option><option value="1013">1013 - 平衡</option>
+                                <option value="1014">1014 - 冰霜</option><option value="1015">1015 - 魔幻</option><option value="1016">1016 - 战意</option><option value="1017">1017 - 光环</option>
+                                <option value="1018">1018 - 黑夜</option><option value="1019">1019 - 奇异</option><option value="1020">1020 - 威严</option><option value="1021">1021 - 圣灵</option>
+                                <option value="1022">1022 - 精准</option><option value="1023">1023 - 会心</option><option value="1024">1024 - 坚硬</option><option value="1025">1025 - 回避</option>
+                                <option value="1026">1026 - 顽强</option><option value="1027">1027 - 瞬杀</option><option value="1028">1028 - 回神</option><option value="1029">1029 - 带电</option>
+                                <option value="1030">1030 - 中毒</option><option value="1031">1031 - 高热</option><option value="1032">1032 - 冰冷</option><option value="1033">1033 - 阴森</option>
+                                <option value="1034">1034 - 睡眠</option><option value="1035">1035 - 反抗</option><option value="1036">1036 - 反驳</option><option value="1037">1037 - 忽略</option>
+                                <option value="1038">1038 - 草率</option><option value="1039">1039 - 汲取</option><option value="1040">1040 - 慌张</option><option value="1041">1041 - 反击</option>
+                                <option value="1042">1042 - 抵抗</option><option value="1043">1043 - 反攻</option><option value="1044">1044 - 坚韧</option><option value="1045">1045 - 借风</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2"><label>技能（4槽，仅显示）</label><div class="form-control form-control-sm bg-light" id="editAttrSkillsDisp" style="min-height:2em;">-</div></div>
+                    <div class="mb-2"><label>技能（可修改）</label>
+                        <div class="row">
+                            <div class="col-6 mb-1"><input type="number" class="form-control form-control-sm" id="editAttrSkill0" placeholder="槽1"></div>
+                            <div class="col-6 mb-1"><input type="number" class="form-control form-control-sm" id="editAttrSkill1" placeholder="槽2"></div>
+                            <div class="col-6 mb-1"><input type="number" class="form-control form-control-sm" id="editAttrSkill2" placeholder="槽3"></div>
+                            <div class="col-6 mb-1"><input type="number" class="form-control form-control-sm" id="editAttrSkill3" placeholder="槽4"></div>
+                        </div>
+                    </div>
+                    <div class="mb-2"><strong>学习力（EV）</strong> <span class="text-muted small">单项 0-255，总和 ≤ 510</span></div>
+                    <div class="row mb-2">
+                        <div class="col-md-4"><label>HP</label><input type="number" class="form-control form-control-sm edit-attr-ev" id="editAttrEvHP" min="0" max="255" value="0"></div>
+                        <div class="col-md-4"><label>攻</label><input type="number" class="form-control form-control-sm edit-attr-ev" id="editAttrEvAtk" min="0" max="255" value="0"></div>
+                        <div class="col-md-4"><label>防</label><input type="number" class="form-control form-control-sm edit-attr-ev" id="editAttrEvDef" min="0" max="255" value="0"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-4"><label>特攻</label><input type="number" class="form-control form-control-sm edit-attr-ev" id="editAttrEvSa" min="0" max="255" value="0"></div>
+                        <div class="col-md-4"><label>特防</label><input type="number" class="form-control form-control-sm edit-attr-ev" id="editAttrEvSd" min="0" max="255" value="0"></div>
+                        <div class="col-md-4"><label>速</label><input type="number" class="form-control form-control-sm edit-attr-ev" id="editAttrEvSp" min="0" max="255" value="0"></div>
+                    </div>
+                    <div class="mb-2"><strong>总学习力：</strong><span id="editAttrEvSum">0</span> / 510</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="saveEditPetAttr()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="gachaAddModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title">添加扭蛋机奖励</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <div class="mb-3"><label>道具ID</label><input type="number" class="form-control" id="gachaAddItemId" placeholder="任意道具ID"></div>
+                    <div class="mb-3"><label>权重（越大概率越高）</label><input type="number" class="form-control" id="gachaAddWeight" value="5" min="1"></div>
+                    <div class="mb-3"><label>中文名称（可选）</label><input type="text" class="form-control" id="gachaAddName" placeholder="留空用系统名"></div>
+                    <div class="mb-3"><label><input type="checkbox" id="gachaAddIsGold"> 金豆商城道具</label></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button><button type="button" class="btn btn-primary" onclick="gachaAddReward()">添加</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="gachaEditModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title">修改扭蛋机奖励</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <input type="hidden" id="gachaEditIndex">
+                    <div class="mb-3"><label>道具ID</label><input type="number" class="form-control" id="gachaEditItemId"></div>
+                    <div class="mb-3"><label>权重</label><input type="number" class="form-control" id="gachaEditWeight" min="1"></div>
+                    <div class="mb-3"><label>中文名称</label><input type="text" class="form-control" id="gachaEditName"></div>
+                    <div class="mb-3"><label><input type="checkbox" id="gachaEditIsGold"> 金豆商城道具</label></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button><button type="button" class="btn btn-primary" onclick="gachaSaveEdit()">保存</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API = 'http://localhost:8080';
+        let currentUserId = null;
+        let usersData = [];
+        let gachaListData = [];
+        let allPets = [];   // 精灵列表（ID + 中文名），用于下拉选择与搜索
+        let allItems = [];  // 道具列表（ID + 中文名），用于下拉选择与搜索
+        let addPetModalInstance, addItemModalInstance, editPetSkillsModalInstance, gachaAddModalInstance, gachaEditModalInstance;
+        let editPetTraitModalInstance, editPetNatureModalInstance, editPetEVModalInstance, blacklistModalInstance, editPetAttrModalInstance;
+        
+        window.onload = function() {
+            addPetModalInstance = new bootstrap.Modal(document.getElementById('addPetModal'));
+            addItemModalInstance = new bootstrap.Modal(document.getElementById('addItemModal'));
+            editPetSkillsModalInstance = new bootstrap.Modal(document.getElementById('editPetSkillsModal'));
+            editPetTraitModalInstance = new bootstrap.Modal(document.getElementById('editPetTraitModal'));
+            editPetNatureModalInstance = new bootstrap.Modal(document.getElementById('editPetNatureModal'));
+            editPetEVModalInstance = new bootstrap.Modal(document.getElementById('editPetEVModal'));
+            editPetAttrModalInstance = new bootstrap.Modal(document.getElementById('editPetAttrModal'));
+            blacklistModalInstance = new bootstrap.Modal(document.getElementById('blacklistModal'));
+            gachaAddModalInstance = new bootstrap.Modal(document.getElementById('gachaAddModal'));
+            gachaEditModalInstance = new bootstrap.Modal(document.getElementById('gachaEditModal'));
+            document.querySelectorAll('.add-ev').forEach(el => el.addEventListener('input', updateAddEvSum));
+            document.querySelectorAll('.ev-input').forEach(el => el.addEventListener('input', updateEditEvSum));
+            document.querySelectorAll('.edit-attr-ev').forEach(el => el.addEventListener('input', updateEditAttrEvSum));
+            loadDashboard();
+            loadUsers();
+            loadPetDatabase();
+            loadItemDatabase();
+        };
+        
+        function showSection(section) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            const sec = document.getElementById(section);
+            if (sec) sec.classList.add('active');
+            if (event && event.target) event.target.classList.add('active');
+            if (section === 'dashboard') loadDashboard();
+            if (section === 'users') loadUsers();
+            if (section === 'pets') { loadPetDatabase(); loadItemDatabase(); }
+            if (section === 'gacha') gachaLoadList();
+            if (section === 'fusion') loadFusionConfig();
+            if (section === 'maps') loadMapConfig();
+        }
+        
+        async function loadDashboard() {
+            try {
+                const res = await fetch(`${API}/gm/users`);
+                const data = await res.json();
+                if (data.success && data.data) {
+                    document.getElementById('totalUsers').textContent = data.data.length;
+                    document.getElementById('totalPets').textContent = data.data.reduce((sum, u) => sum + (u.petCount || 0), 0);
+                    document.getElementById('totalCoins').textContent = data.data.reduce((sum, u) => sum + (u.coins || 0), 0);
+                }
+                const onlineEl = document.getElementById('onlineUsers');
+                if (onlineEl) onlineEl.textContent = '-';
+            } catch (e) { console.error(e); }
+        }
+        
+        function updateEditAttrEvSum() {
+            const ids = ['editAttrEvHP','editAttrEvAtk','editAttrEvDef','editAttrEvSa','editAttrEvSd','editAttrEvSp'];
+            let sum = 0;
+            ids.forEach(id => { const el = document.getElementById(id); if(el) { const v = parseInt(el.value, 10) || 0; sum += Math.min(255, Math.max(0, v)); } });
+            const el = document.getElementById('editAttrEvSum');
+            if (el) { el.textContent = sum; el.style.color = sum > 510 ? 'red' : ''; }
+        }
+        
+        function openEditPetAttrModal(catchTime, fromStorage) {
+            if (!currentUserId) return alert('请先选择用户');
+            const list = fromStorage ? (window.__storagePetsDetail || []) : (window.__userPetsDetail || []);
+            const p = list.find(x => x.catchTime === catchTime);
+            if (!p) return alert('未找到该精灵');
+            const names = (window.__petSkillNames && window.__petSkillNames[String(catchTime)]) || [];
+            const skillDisp = (p.skills && p.skills.length) ? p.skills.map((s,i) => s ? (names[i] ? names[i]+'('+s+')' : String(s)) : '').filter(Boolean).join('、') : '默认';
+            document.getElementById('editAttrCatchTime').value = catchTime;
+            document.getElementById('editAttrFromStorage').value = fromStorage ? '1' : '0';
+            document.getElementById('editAttrCatchTimeDisp').value = catchTime;
+            document.getElementById('editAttrPetId').value = p.id || '';
+            document.getElementById('editAttrName').value = p.name || '';
+            document.getElementById('editAttrLevel').value = p.level || 1;
+            document.getElementById('editAttrExp').value = p.exp != null ? p.exp : 0;
+            document.getElementById('editAttrDv').value = p.dv != null ? p.dv : 0;
+            document.getElementById('editAttrNature').value = String(p.nature != null ? p.nature : 0);
+            document.getElementById('editAttrTrait').value = (p.trait && p.trait > 0) ? String(p.trait) : '';
+            document.getElementById('editAttrSkillsDisp').textContent = skillDisp;
+            for (let i = 0; i < 4; i++) document.getElementById('editAttrSkill' + i).value = (p.skills && p.skills[i]) ? p.skills[i] : '';
+            document.getElementById('editAttrEvHP').value = p.ev_hp != null ? p.ev_hp : 0;
+            document.getElementById('editAttrEvAtk').value = p.ev_attack != null ? p.ev_attack : 0;
+            document.getElementById('editAttrEvDef').value = p.ev_defence != null ? p.ev_defence : 0;
+            document.getElementById('editAttrEvSa').value = p.ev_sa != null ? p.ev_sa : 0;
+            document.getElementById('editAttrEvSd').value = p.ev_sd != null ? p.ev_sd : 0;
+            document.getElementById('editAttrEvSp').value = p.ev_sp != null ? p.ev_sp : 0;
+            updateEditAttrEvSum();
+            editPetAttrModalInstance.show();
+        }
+        
+        async function saveEditPetAttr() {
+            const catchTime = parseInt(document.getElementById('editAttrCatchTime').value, 10);
+            const fromStorage = document.getElementById('editAttrFromStorage').value === '1';
+            const nature = parseInt(document.getElementById('editAttrNature').value, 10) || 0;
+            let traitVal = document.getElementById('editAttrTrait').value.trim();
+            let trait = 0;
+            if (traitVal === '-1') trait = -1; else if (traitVal !== '') trait = parseInt(traitVal, 10) || 0;
+            const skills = [
+                parseInt(document.getElementById('editAttrSkill0').value) || 0,
+                parseInt(document.getElementById('editAttrSkill1').value) || 0,
+                parseInt(document.getElementById('editAttrSkill2').value) || 0,
+                parseInt(document.getElementById('editAttrSkill3').value) || 0
+            ];
+            const evHP = Math.min(255, Math.max(0, parseInt(document.getElementById('editAttrEvHP').value, 10) || 0));
+            const evAtk = Math.min(255, Math.max(0, parseInt(document.getElementById('editAttrEvAtk').value, 10) || 0));
+            const evDef = Math.min(255, Math.max(0, parseInt(document.getElementById('editAttrEvDef').value, 10) || 0));
+            const evSa = Math.min(255, Math.max(0, parseInt(document.getElementById('editAttrEvSa').value, 10) || 0));
+            const evSd = Math.min(255, Math.max(0, parseInt(document.getElementById('editAttrEvSd').value, 10) || 0));
+            const evSp = Math.min(255, Math.max(0, parseInt(document.getElementById('editAttrEvSp').value, 10) || 0));
+            if (evHP + evAtk + evDef + evSa + evSd + evSp > 510) { alert('学习力总和不能超过 510'); return; }
+            try {
+                const base = { userId: currentUserId, catchTime };
+                const resNature = await fetch(`${API}/gm/pet/nature`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ ...base, nature }) });
+                const dataNature = await resNature.json();
+                const resTrait = await fetch(`${API}/gm/pet/trait`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ ...base, trait }) });
+                const dataTrait = await resTrait.json();
+                const resEv = await fetch(`${API}/gm/pet/ev`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ ...base, fromStorage, ev_hp: evHP, ev_attack: evAtk, ev_defence: evDef, ev_sa: evSa, ev_sd: evSd, ev_sp: evSp }) });
+                const dataEv = await resEv.json();
+                const resSkills = await fetch(`${API}/gm/pet/skills`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ ...base, skills }) });
+                const dataSkills = await resSkills.json();
+                const ok = dataNature.success && dataTrait.success && dataEv.success && dataSkills.success;
+                alert(ok ? '保存成功' : (dataNature.message || dataTrait.message || dataEv.message || dataSkills.message || '部分保存失败'));
+                if (ok) { editPetAttrModalInstance.hide(); showUserDetail(currentUserId); }
+            } catch (e) { alert('保存失败: ' + e.message); }
+        }
+        
+        async function loadUsers() {
+            try {
+                const keyword = document.getElementById('searchKeyword').value.trim();
+                const url = keyword ? `${API}/gm/users?keyword=${encodeURIComponent(keyword)}` : `${API}/gm/users`;
+                const res = await fetch(url);
+                const data = await res.json();
+                if(data.success) {
+                    usersData = data.data;
+                    const html = data.data.map(u => `
+                        <div class="user-item" onclick="showUserDetail(${u.userId})">
+                            <strong>${u.nickname || '未命名'}</strong> (ID: ${u.userId})<br>
+                            <small>💰 ${u.coins} | 💎 ${u.gold} | 🥚 ${u.petCount}</small>
+                        </div>
+                    `).join('');
+                    document.getElementById('userList').innerHTML = html;
+                }
+            } catch(e) { alert('加载失败: ' + e.message); }
+        }
+        
+        async function showUserDetail(userId) {
+            currentUserId = userId;
+            try {
+                const res = await fetch(`${API}/gm/user/?userId=${userId}&_t=${Date.now()}`);
+                const data = await res.json();
+                if(data.success) {
+                    document.getElementById('userDetail').style.display = 'block';
+                    document.getElementById('detailUserId').textContent = data.user.userId;
+                    document.getElementById('detailEmail').textContent = data.user.email;
+                    document.getElementById('detailNick').value = data.gameData.nick;
+                    document.getElementById('detailPassword').value = data.user.password || '';
+                    document.getElementById('detailPassword').placeholder = '留空不修改，填写则更新密码';
+                    document.getElementById('detailCoins').value = data.gameData.coins;
+                    document.getElementById('detailGold').value = data.gameData.gold;
+                    document.getElementById('detailEnergy').value = data.gameData.energy;
+
+                    // NoNo / 超能相关展示与编辑
+                    const no = data.gameData.nono || {};
+                    // 填充编辑字段
+                    const setValue = (id, val) => {
+                        const el = document.getElementById(id);
+                        if (el) el.value = (val !== undefined && val !== null) ? val : '';
+                    };
+                    setValue('nonoSuperLevel', no.level || no.vipLevel || 0);
+                    setValue('nonoEnergy', no.energy || 0);
+                    setValue('nonoExp', no.exp || 0);
+                    setValue('nonoSkillPoints', no.skillPoints || 0);
+                    setValue('nonoStatus', no.status !== undefined ? no.status : 0);
+                    // 刷新显示字段
+                    refreshNonoDisplay();
+                    document.getElementById('detailExpPool').textContent = data.gameData.expPool != null ? data.gameData.expPool : 0;
+                    document.getElementById('expSetValue').value = data.gameData.expPool != null ? data.gameData.expPool : '';
+                    const curTitleId = data.gameData.curTitle != null ? data.gameData.curTitle : 0;
+                    const titleIds = data.gameData.titleIds || [];
+                    if (window.__gmTitles && window.__gmTitles.length) {
+                        const t = window.__gmTitles.find(x => x.id === curTitleId);
+                        document.getElementById('detailCurTitle').textContent = t ? (curTitleId + ' - ' + t.name) : ('ID: ' + curTitleId);
+                    } else {
+                        document.getElementById('detailCurTitle').textContent = 'ID: ' + curTitleId + (titleIds.length ? ' (已获得 ' + titleIds.length + ' 个)' : '');
+                    }
+                    loadTitlesForGM();
+                    window.__petSkillNames = data.gameData.petSkillNames || {};
+                    window.__userPetsDetail = data.gameData.pets || [];
+                    const skillNamesMap = data.gameData.petSkillNames || {};
+                    const petsHtml = (data.gameData.pets || []).map(p => {
+                        const names = skillNamesMap[String(p.catchTime)] || [];
+                        const skillText = (p.skills && p.skills.length) ? p.skills.map((s,i) => s ? (names[i] ? names[i]+'('+s+')' : s) : '').filter(Boolean).join('、') : '默认';
+                        const natureNameMap = {
+                            0: '孤独 - 攻击↑ 防御↓', 1: '勇敢 - 攻击↑ 速度↓', 2: '固执 - 攻击↑ 特攻↓', 3: '调皮 - 攻击↑ 特防↓',
+                            4: '胆小 - 速度↑ 攻击↓', 5: '急躁 - 速度↑ 防御↓', 6: '开朗 - 速度↑ 特攻↓', 7: '天真 - 速度↑ 特防↓',
+                            8: '大胆 - 防御↑ 攻击↓', 9: '悠闲 - 防御↑ 速度↓', 10: '顽皮 - 防御↑ 特攻↓', 11: '无虑 - 防御↑ 特防↓',
+                            12: '保守 - 特攻↑ 攻击↓', 13: '稳重 - 特攻↑ 防御↓', 14: '冷静 - 特攻↑ 速度↓', 15: '马虎 - 特攻↑ 特防↓',
+                            16: '沉着 - 特防↑ 攻击↓', 17: '温顺 - 特防↑ 防御↓', 18: '狂妄 - 特防↑ 速度↓', 19: '慎重 - 特防↑ 特攻↓',
+                            20: '害羞 - 平衡', 21: '浮躁 - 平衡', 22: '坦率 - 平衡', 23: '实干 - 平衡', 24: '认真 - 平衡'
+                        };
+                        const natureId = (p.nature != null ? p.nature : 0);
+                        const natureLabel = natureNameMap[natureId] || (natureId + ' - 未知');
+                        const evH = p.ev_hp != null ? p.ev_hp : 0, evA = p.ev_attack != null ? p.ev_attack : 0, evD = p.ev_defence != null ? p.ev_defence : 0;
+                        const evSa = p.ev_sa != null ? p.ev_sa : 0, evSd = p.ev_sd != null ? p.ev_sd : 0, evSp = p.ev_sp != null ? p.ev_sp : 0;
+                        const evStr = `学习力: 体${evH} 攻${evA} 防${evD} 特攻${evSa} 特防${evSd} 速${evSp} (${evH+evA+evD+evSa+evSd+evSp}/510)`;
+                        const isShiny = (p.shiny != null && p.shiny !== 0);
+                        return `
+                        <div class="pet-card d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="openEditPetAttrModal(${p.catchTime}, false)">
+                            <div>
+                                <strong>${p.name || '未知精灵'} (ID: ${p.id})</strong> ${isShiny ? '<span class="badge bg-warning text-dark">异色</span>' : ''}<br>
+                                等级: ${p.level} | 性格: ${natureId} - ${natureLabel} | DV: ${p.dv} | catchTime: ${p.catchTime}<br>
+                                ${evStr}<br>
+                                特性: ${p.trait ? p.trait : '无'}<br>
+                                技能: ${skillText}
+                            </div>
+                            <div onclick="event.stopPropagation();">
+                                <button class="btn btn-sm me-1 ${isShiny ? 'btn-outline-secondary' : 'btn-warning'}" onclick="setPetShiny(${p.catchTime}, ${isShiny ? 0 : 1}, false)">${isShiny ? '取消异色' : '设为异色'}</button>
+                                <button class="btn btn-primary btn-sm me-1" onclick="openEditPetAttrModal(${p.catchTime}, false)">编辑</button>
+                                <button class="btn btn-danger btn-sm" onclick="deletePet(${p.catchTime}, false)">删除精灵</button>
+                            </div>
+                        </div>
+                    `}).join('');
+                    document.getElementById('userPets').innerHTML = petsHtml || '<p class="text-muted">暂无精灵</p>';
+                    
+                    const itemsHtml = Object.entries(data.gameData.items || {}).map(([id, item]) => `
+                        <div class="item-box">
+                            <div><strong>${item.name || '未知道具'}</strong></div>
+                            <div>ID: ${id}</div>
+                            <div>x${item.count}</div>
+                            <div class="mt-2">
+                                <button class="btn btn-danger btn-sm" onclick="deleteItem(${parseInt(id, 10)})">删除</button>
+                            </div>
+                        </div>
+                    `).join('');
+                    document.getElementById('userItems').innerHTML = itemsHtml || '<p class="text-muted">暂无物品</p>';
+                    
+                    window.__storagePetsDetail = data.gameData.storagePets || [];
+                    if (typeof window.__storagePetsPage !== 'number') window.__storagePetsPage = 0;
+                    window.__storagePetsPageSize = 15;
+                    renderStoragePets();
+                }
+            } catch(e) { alert('加载失败: ' + e.message); }
+        }
+        
+        async function saveUserInfo() {
+            try {
+                const payload = {
+                    userId: currentUserId,
+                    nickname: document.getElementById('detailNick').value,
+                    coins: parseInt(document.getElementById('detailCoins').value),
+                    gold: parseInt(document.getElementById('detailGold').value),
+                    energy: parseInt(document.getElementById('detailEnergy').value)
+                };
+                const pwd = document.getElementById('detailPassword').value.trim();
+                if (pwd) payload.password = pwd;
+                const res = await fetch(`${API}/gm/user/update`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                alert(data.success ? '保存成功' : data.message);
+                if(data.success) { loadUsers(); showUserDetail(currentUserId); }
+            } catch(e) { alert('保存失败: ' + e.message); }
+        }
+        
+        // NoNo / 超能信息管理函数
+        function adjustNonoLevel(delta) {
+            const el = document.getElementById('nonoSuperLevel');
+            if (!el) return;
+            const current = parseInt(el.value || '0', 10);
+            const newVal = Math.max(0, Math.min(12, current + delta));
+            el.value = newVal;
+        }
+        
+        function refreshNonoDisplay() {
+            if (!currentUserId) return;
+            fetch(`${API}/gm/user/?userId=${currentUserId}&_t=${Date.now()}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success && data.gameData && data.gameData.nono) {
+                        const no = data.gameData.nono;
+                        const setText = (id, val) => {
+                            const el = document.getElementById(id);
+                            if (el) el.textContent = (val !== undefined && val !== null) ? val : '-';
+                        };
+                        setText('nonoTypeDisplay', no.type !== undefined ? no.type : '-');
+                        setText('nonoVipLevelDisplay', no.vipLevel !== undefined ? no.vipLevel : '-');
+                        // 剩余超能天数
+                        const leftEl = document.getElementById('nonoVipLeftDaysDisplay');
+                        if (leftEl) {
+                            const nowSec = Date.now() / 1000;
+                            if (typeof no.vipEndTime === 'number' && no.vipEndTime > 0) {
+                                const diff = no.vipEndTime - nowSec;
+                                const days = Math.max(0, Math.floor(diff / 86400));
+                                leftEl.textContent = days + ' 天';
+                            } else {
+                                leftEl.textContent = '未开通';
+                            }
+                        }
+                        // 到期时间
+                        const endTimeEl = document.getElementById('nonoVipEndTimeDisplay');
+                        if (endTimeEl) {
+                            if (typeof no.vipEndTime === 'number' && no.vipEndTime > 0) {
+                                const date = new Date(no.vipEndTime * 1000);
+                                endTimeEl.textContent = date.toLocaleString('zh-CN');
+                            } else {
+                                endTimeEl.textContent = '未开通';
+                            }
+                        }
+                    }
+                })
+                .catch(e => console.error('刷新NoNo显示失败:', e));
+        }
+        
+        async function saveNonoInfo() {
+            if (!currentUserId) { alert('请先选择用户'); return; }
+            try {
+                const payload = {
+                    userId: currentUserId,
+                    nono: {
+                        level: parseInt(document.getElementById('nonoSuperLevel').value || '0', 10),
+                        energy: parseInt(document.getElementById('nonoEnergy').value || '0', 10),
+                        exp: parseInt(document.getElementById('nonoExp').value || '0', 10),
+                        skillPoints: parseInt(document.getElementById('nonoSkillPoints').value || '0', 10),
+                        status: parseInt(document.getElementById('nonoStatus').value || '0', 10)
+                    }
+                };
+                // 只发送有值的字段
+                if (payload.nono.level === 0 && !document.getElementById('nonoSuperLevel').value) {
+                    delete payload.nono.level;
+                }
+                const res = await fetch(`${API}/gm/user/update`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                alert(data.success ? '保存成功！形态和显示等级已自动更新' : data.message);
+                if(data.success) {
+                    showUserDetail(currentUserId);
+                    refreshNonoDisplay();
+                }
+            } catch(e) { alert('保存失败: ' + e.message); }
+        }
+        
+        async function activateSuperNono() {
+            if (!currentUserId) { alert('请先选择用户'); return; }
+            const days = parseInt(document.getElementById('nonoActivateDays').value || '30', 10);
+            if (days <= 0) { alert('请输入有效的天数'); return; }
+            if (!confirm(`确定开通超能NoNo ${days} 天？`)) return;
+            try {
+                const res = await fetch(`${API}/gm/nono/activate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, days })
+                });
+                const data = await res.json();
+                alert(data.success ? data.message : data.message);
+                if(data.success) {
+                    showUserDetail(currentUserId);
+                    refreshNonoDisplay();
+                }
+            } catch(e) { alert('开通失败: ' + e.message); }
+        }
+        
+        function showAddPetModal() {
+            if(!currentUserId) return alert('请先选择用户');
+            ['addEvHP','addEvAtk','addEvDef','addEvSpAtk','addEvSpDef','addEvSpd'].forEach((id,i) => { const el = document.getElementById(id); if(el) el.value = 0; });
+            updateAddEvSum();
+            addPetModalInstance.show();
+        }
+        
+        function updateAddEvSum() {
+            const ids = ['addEvHP','addEvAtk','addEvDef','addEvSpAtk','addEvSpDef','addEvSpd'];
+            let sum = 0;
+            ids.forEach(id => { const v = parseInt(document.getElementById(id).value, 10) || 0; sum += Math.min(255, Math.max(0, v)); });
+            const el = document.getElementById('addEvSum');
+            if (el) el.textContent = sum;
+            if (el) el.style.color = sum > 510 ? 'red' : '';
+        }
+        
+        function updateEditEvSum() {
+            const ids = ['editEvHP','editEvAtk','editEvDef','editEvSpAtk','editEvSpDef','editEvSpd'];
+            let sum = 0;
+            ids.forEach(id => { const v = parseInt(document.getElementById(id).value, 10) || 0; sum += Math.min(255, Math.max(0, v)); });
+            const el = document.getElementById('editEvSum');
+            if (el) el.textContent = sum;
+            if (el) el.style.color = sum > 510 ? 'red' : '';
+        }
+
+        async function addPet() {
+            try {
+                const traitSelect = document.getElementById('addPetTrait');
+                const natureSelect = document.getElementById('addPetNature');
+                const traitVal = traitSelect ? traitSelect.value.trim() : '';
+                const natureVal = natureSelect ? natureSelect.value.trim() : '';
+
+                let trait = 0;
+                if (traitVal === '-1') {
+                    trait = -1;
+                } else if (traitVal !== '') {
+                    trait = parseInt(traitVal, 10) || 0;
+                }
+                let nature = undefined;
+                if (natureVal !== '') {
+                    nature = parseInt(natureVal, 10) || 0;
+                }
+
+                const evHP = Math.min(255, Math.max(0, parseInt(document.getElementById('addEvHP').value, 10) || 0));
+                const evAtk = Math.min(255, Math.max(0, parseInt(document.getElementById('addEvAtk').value, 10) || 0));
+                const evDef = Math.min(255, Math.max(0, parseInt(document.getElementById('addEvDef').value, 10) || 0));
+                const evSpAtk = Math.min(255, Math.max(0, parseInt(document.getElementById('addEvSpAtk').value, 10) || 0));
+                const evSpDef = Math.min(255, Math.max(0, parseInt(document.getElementById('addEvSpDef').value, 10) || 0));
+                const evSpd = Math.min(255, Math.max(0, parseInt(document.getElementById('addEvSpd').value, 10) || 0));
+                const evSum = evHP + evAtk + evDef + evSpAtk + evSpDef + evSpd;
+                if (evSum > 510) {
+                    alert('学习力总和不能超过 510');
+                    return;
+                }
+
+                const payload = {
+                    userId: currentUserId,
+                    petId: parseInt(document.getElementById('addPetId').value),
+                    level: parseInt(document.getElementById('addPetLevel').value),
+                    shiny: document.getElementById('addPetShiny').checked ? 1 : 0,
+                    trait: trait,
+                    ev_hp: evHP,
+                    ev_attack: evAtk,
+                    ev_defence: evDef,
+                    ev_sa: evSpAtk,
+                    ev_sd: evSpDef,
+                    ev_sp: evSpd
+                };
+                if (nature !== undefined) {
+                    payload.nature = nature;
+                }
+
+                const res = await fetch(`${API}/gm/pet/add`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                alert(data.success ? '添加成功' : data.message);
+                if(data.success) { addPetModalInstance.hide(); showUserDetail(currentUserId); }
+            } catch(e) { alert('添加失败: ' + e.message); }
+        }
+
+        // 显示修改特性弹窗
+        function showEditPetTraitModal(catchTime, currentTrait, fromStorage) {
+            document.getElementById('editTraitCatchTime').value = catchTime;
+            document.getElementById('editTraitFromStorage').value = fromStorage ? '1' : '0';
+            const sel = document.getElementById('editTraitSelect');
+            if (sel) {
+                let val = '';
+                if (currentTrait && currentTrait > 0) {
+                    val = String(currentTrait);
+                }
+                sel.value = val;
+            }
+            editPetTraitModalInstance.show();
+        }
+
+        async function savePetTrait() {
+            const catchTime = parseInt(document.getElementById('editTraitCatchTime').value, 10);
+            let traitVal = document.getElementById('editTraitSelect').value.trim();
+            let trait = 0;
+            if (traitVal === '-1') {
+                trait = -1;
+            } else if (traitVal !== '') {
+                trait = parseInt(traitVal, 10) || 0;
+            }
+            try {
+                const res = await fetch(`${API}/gm/pet/trait`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        userId: currentUserId,
+                        catchTime: catchTime,
+                        trait: trait
+                    })
+                });
+                const data = await res.json();
+                alert(data.success ? '修改成功' : (data.message || '修改失败'));
+                if (data.success) {
+                    editPetTraitModalInstance.hide();
+                    showUserDetail(currentUserId);
+                }
+            } catch (e) {
+                alert('修改失败: ' + e.message);
+            }
+        }
+
+        // 显示修改性格弹窗
+        function showEditPetNatureModal(catchTime, currentNature, fromStorage) {
+            document.getElementById('editNatureCatchTime').value = catchTime;
+            document.getElementById('editNatureFromStorage').value = fromStorage ? '1' : '0';
+            const sel = document.getElementById('editNatureSelect');
+            if (sel) {
+                sel.value = String(currentNature ?? 0);
+            }
+            editPetNatureModalInstance.show();
+        }
+
+        async function savePetNature() {
+            const catchTime = parseInt(document.getElementById('editNatureCatchTime').value, 10);
+            const natureVal = document.getElementById('editNatureSelect').value.trim();
+            const nature = parseInt(natureVal, 10) || 0;
+            try {
+                const res = await fetch(`${API}/gm/pet/nature`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        userId: currentUserId,
+                        catchTime: catchTime,
+                        nature: nature
+                    })
+                });
+                const data = await res.json();
+                alert(data.success ? '修改成功' : (data.message || '修改失败'));
+                if (data.success) {
+                    editPetNatureModalInstance.hide();
+                    showUserDetail(currentUserId);
+                }
+            } catch (e) {
+                alert('修改失败: ' + e.message);
+            }
+        }
+
+        function showEditPetEVModal(catchTime, evHP, evAtk, evDef, evSpAtk, evSpDef, evSpd, fromStorage) {
+            document.getElementById('editEVCatchTime').value = catchTime;
+            document.getElementById('editEVFromStorage').value = fromStorage ? '1' : '0';
+            document.getElementById('editEvHP').value = evHP || 0;
+            document.getElementById('editEvAtk').value = evAtk || 0;
+            document.getElementById('editEvDef').value = evDef || 0;
+            document.getElementById('editEvSpAtk').value = evSpAtk || 0;
+            document.getElementById('editEvSpDef').value = evSpDef || 0;
+            document.getElementById('editEvSpd').value = evSpd || 0;
+            updateEditEvSum();
+            editPetEVModalInstance.show();
+        }
+
+        async function savePetEV() {
+            const catchTime = parseInt(document.getElementById('editEVCatchTime').value, 10);
+            const fromStorage = document.getElementById('editEVFromStorage').value === '1';
+            const evHP = Math.min(255, Math.max(0, parseInt(document.getElementById('editEvHP').value, 10) || 0));
+            const evAtk = Math.min(255, Math.max(0, parseInt(document.getElementById('editEvAtk').value, 10) || 0));
+            const evDef = Math.min(255, Math.max(0, parseInt(document.getElementById('editEvDef').value, 10) || 0));
+            const evSpAtk = Math.min(255, Math.max(0, parseInt(document.getElementById('editEvSpAtk').value, 10) || 0));
+            const evSpDef = Math.min(255, Math.max(0, parseInt(document.getElementById('editEvSpDef').value, 10) || 0));
+            const evSpd = Math.min(255, Math.max(0, parseInt(document.getElementById('editEvSpd').value, 10) || 0));
+            if (evHP + evAtk + evDef + evSpAtk + evSpDef + evSpd > 510) {
+                alert('学习力总和不能超过 510');
+                return;
+            }
+            try {
+                const res = await fetch(`${API}/gm/pet/ev`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        userId: currentUserId,
+                        catchTime: catchTime,
+                        fromStorage: fromStorage,
+                        ev_hp: evHP,
+                        ev_attack: evAtk,
+                        ev_defence: evDef,
+                        ev_sa: evSpAtk,
+                        ev_sd: evSpDef,
+                        ev_sp: evSpd
+                    })
+                });
+                const data = await res.json();
+                alert(data.success ? '修改成功' : (data.message || '修改失败'));
+                if (data.success) {
+                    editPetEVModalInstance.hide();
+                    showUserDetail(currentUserId);
+                }
+            } catch (e) {
+                alert('修改失败: ' + e.message);
+            }
+        }
+
+        async function showBlacklistModal() {
+            if (!currentUserId) return alert('请先选择用户');
+            try {
+                const res = await fetch(`${API}/gm/user/?userId=${currentUserId}&_t=${Date.now()}`);
+                const data = await res.json();
+                if (!data.success) { alert(data.message || '加载失败'); return; }
+                const blacklist = data.gameData.blacklist || [];
+                const listEl = document.getElementById('blacklistList');
+                if (blacklist.length === 0) {
+                    listEl.innerHTML = '<p class="text-muted">当前用户黑名单为空</p>';
+                } else {
+                    listEl.innerHTML = blacklist.map(b => {
+                        const nick = (usersData.find(u => u.userId === b.userID) || {}).nickname || ('ID:' + b.userID);
+                        return `<div class="d-flex justify-content-between align-items-center mb-2"><span>${nick} (ID: ${b.userID})</span><button class="btn btn-sm btn-outline-danger" onclick="removeFromBlacklist(${b.userID})">移除</button></div>`;
+                    }).join('');
+                }
+                document.getElementById('blacklistUserId').value = '';
+                blacklistModalInstance.show();
+            } catch (e) {
+                alert('加载黑名单失败: ' + e.message);
+            }
+        }
+
+        async function addToBlacklist() {
+            const blockedId = parseInt(document.getElementById('blacklistUserId').value, 10);
+            if (!blockedId) { alert('请输入要拉黑的用户ID'); return; }
+            const blockedUser = usersData.find(u => u.userId === blockedId);
+            const blockedNick = blockedUser ? blockedUser.nickname : ('ID:' + blockedId);
+            try {
+                const res = await fetch(`${API}/gm/blacklist/add`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, blockedId: blockedId, blockedNick: blockedNick })
+                });
+                const data = await res.json();
+                alert(data.success ? '已拉黑' : (data.message || '添加失败'));
+                if (data.success) { showBlacklistModal(); }
+            } catch (e) {
+                alert('添加失败: ' + e.message);
+            }
+        }
+
+        async function removeFromBlacklist(blockedId) {
+            try {
+                const res = await fetch(`${API}/gm/blacklist/remove`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, blockedId: blockedId })
+                });
+                const data = await res.json();
+                alert(data.success ? '已移除' : (data.message || '移除失败'));
+                if (data.success) { showBlacklistModal(); }
+            } catch (e) {
+                alert('移除失败: ' + e.message);
+            }
+        }
+        
+        function showAddItemModal() {
+            if(!currentUserId) return alert('请先选择用户');
+            addItemModalInstance.show();
+        }
+        
+        async function addItem() {
+            try {
+                const res = await fetch(`${API}/gm/item/add`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        userId: currentUserId,
+                        // 支持输入 “300001 精灵胶囊” 这种格式，后端仍然只接收数值 ID
+                        itemId: parseInt(document.getElementById('addItemId').value),
+                        count: parseInt(document.getElementById('addItemCount').value)
+                    })
+                });
+                const data = await res.json();
+                alert(data.success ? '添加成功' : data.message);
+                if(data.success) { addItemModalInstance.hide(); showUserDetail(currentUserId); }
+            } catch(e) { alert('添加失败: ' + e.message); }
+        }
+
+        async function deleteItem(itemId) {
+            if (!currentUserId) return alert('请先选择用户');
+            if (!confirm(`确定删除物品 ID ${itemId} 吗？`)) return;
+            try {
+                const res = await fetch(`${API}/gm/item/delete`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, itemId: itemId })
+                });
+                const data = await res.json();
+                alert(data.success ? '删除成功' : (data.message || '删除失败'));
+                if (data.success) { showUserDetail(currentUserId); }
+            } catch(e) { alert('删除失败: ' + e.message); }
+        }
+        
+        async function loadPetDatabase() {
+            const container = document.getElementById('petDatabase');
+            if (container) container.innerHTML = '<p class="text-muted">精灵列表加载中...</p>';
+            try {
+                const res = await fetch(`${API}/gm/pets`);
+                const data = await res.json();
+                if (data.success && Array.isArray(data.data)) {
+                    allPets = data.data;
+                    if (container) renderPetDatabase(allPets);
+                    const dl = document.getElementById('petOptions');
+                    if (dl) dl.innerHTML = allPets.map(p => `<option value="${p.id} ${p.name}"></option>`).join('');
+                } else if (container) {
+                    container.innerHTML = '<p class="text-danger">精灵列表加载失败</p>';
+                }
+            } catch (e) {
+                console.error(e);
+                if (container) container.innerHTML = '<p class="text-danger">精灵列表加载失败，请确认服务已启动</p>';
+            }
+        }
+
+        // 手动从 pets.xml 刷新精灵数据库映射，然后重新加载列表
+        async function reloadPetDatabase() {
+            try {
+                const res = await fetch(`${API}/gm/pets/reload`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await res.json();
+                alert(data.message || (data.success ? '刷新成功' : '刷新失败'));
+                if (data.success) {
+                    loadPetDatabase();
+                }
+            } catch (e) {
+                console.error(e);
+                alert('刷新失败: ' + e.message);
+            }
+        }
+
+        function renderPetDatabase(list) {
+            const container = document.getElementById('petDatabase');
+            if (!container) return;
+            if (!list || list.length === 0) {
+                container.innerHTML = '<p class="text-muted">暂未配置精灵名称映射</p>';
+                return;
+            }
+            container.innerHTML = list.map(p => `
+                <div class="user-item">
+                    <strong>${p.name || '未知精灵'}</strong> (ID: ${p.id})
+                </div>
+            `).join('');
+        }
+
+        async function loadItemDatabase() {
+            const container = document.getElementById('itemDatabase');
+            if (container) container.innerHTML = '<p class="text-muted">道具列表加载中...</p>';
+            try {
+                const res = await fetch(`${API}/gm/items`);
+                const data = await res.json();
+                if (data.success && Array.isArray(data.data)) {
+                    allItems = data.data;
+                    if (container) renderItemDatabase(allItems);
+                    const dl = document.getElementById('itemOptions');
+                    if (dl) dl.innerHTML = allItems.map(it => `<option value="${it.id} ${it.name}"></option>`).join('');
+                } else if (container) {
+                    container.innerHTML = '<p class="text-danger">道具列表加载失败</p>';
+                }
+            } catch (e) {
+                console.error(e);
+                if (container) container.innerHTML = '<p class="text-danger">道具列表加载失败，请确认服务已启动</p>';
+            }
+        }
+
+        function renderItemDatabase(list) {
+            const container = document.getElementById('itemDatabase');
+            if (!container) return;
+            if (!list || list.length === 0) {
+                container.innerHTML = '<p class="text-muted">暂未配置道具名称映射</p>';
+                return;
+            }
+            container.innerHTML = list.map(it => `
+                <div class="user-item">
+                    <strong>${it.name || '未知道具'}</strong> (ID: ${it.id})
+                </div>
+            `).join('');
+        }
+        
+        function loadMapConfig() {
+            document.getElementById('mapConfig').innerHTML = '<p class="text-muted">地图配置功能开发中...</p>';
+        }
+        
+        function searchPets(query) {
+            if (!allPets || allPets.length === 0) return;
+            const q = (query || '').trim().toLowerCase();
+            if (!q) {
+                renderPetDatabase(allPets);
+                return;
+            }
+            const filtered = allPets.filter(p => {
+                const idStr = String(p.id);
+                const nameStr = (p.name || '').toLowerCase();
+                return idStr.includes(q) || nameStr.includes(q);
+            });
+            renderPetDatabase(filtered);
+        }
+
+        function searchItems(query) {
+            if (!allItems || allItems.length === 0) return;
+            const q = (query || '').trim().toLowerCase();
+            if (!q) {
+                renderItemDatabase(allItems);
+                return;
+            }
+            const filtered = allItems.filter(it => {
+                const idStr = String(it.id);
+                const nameStr = (it.name || '').toLowerCase();
+                return idStr.includes(q) || nameStr.includes(q);
+            });
+            renderItemDatabase(filtered);
+        }
+        
+        function showEditPetSkillsModal(catchTime, skillsArr) {
+            if (!currentUserId) return alert('请先选择用户');
+            document.getElementById('editPetCatchTime').value = catchTime;
+            const arr = Array.isArray(skillsArr) ? skillsArr : [];
+            const names = (window.__petSkillNames && window.__petSkillNames[String(catchTime)]) || [];
+            for (let i = 0; i < 4; i++) {
+                document.getElementById('editSkill' + i).value = arr[i] || '';
+                document.getElementById('editSkillName' + i).textContent = names[i] ? '（' + names[i] + '）' : '';
+            }
+            editPetSkillsModalInstance.show();
+        }
+        
+        async function savePetSkills() {
+            const catchTime = parseInt(document.getElementById('editPetCatchTime').value);
+            const skills = [
+                parseInt(document.getElementById('editSkill0').value) || 0,
+                parseInt(document.getElementById('editSkill1').value) || 0,
+                parseInt(document.getElementById('editSkill2').value) || 0,
+                parseInt(document.getElementById('editSkill3').value) || 0
+            ];
+            try {
+                const res = await fetch(`${API}/gm/pet/skills`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, catchTime: catchTime, skills: skills })
+                });
+                const data = await res.json();
+                alert(data.success ? '修改成功' : data.message);
+                if (data.success) { editPetSkillsModalInstance.hide(); showUserDetail(currentUserId); }
+            } catch (e) { alert('请求失败: ' + e.message); }
+        }
+        
+        const storageNatureShort = { 0:'孤独',1:'勇敢',2:'固执',3:'调皮',4:'胆小',5:'急躁',6:'开朗',7:'天真',8:'大胆',9:'悠闲',10:'顽皮',11:'无虑',12:'保守',13:'稳重',14:'冷静',15:'马虎',16:'沉着',17:'温顺',18:'狂妄',19:'慎重',20:'害羞',21:'浮躁',22:'坦率',23:'实干',24:'认真' };
+        function renderStoragePets() {
+            const list = window.__storagePetsDetail || [];
+            const page = Math.max(0, parseInt(window.__storagePetsPage, 10) || 0);
+            const size = Math.max(1, parseInt(window.__storagePetsPageSize, 10) || 15);
+            const totalPages = Math.max(1, Math.ceil(list.length / size));
+            const curPage = Math.min(page, totalPages - 1);
+            window.__storagePetsPage = curPage;
+            const slice = list.slice(curPage * size, curPage * size + size);
+            const el = document.getElementById('storagePets');
+            const pagerEl = document.getElementById('storagePetsPager');
+            if (list.length === 0) {
+                el.innerHTML = '<p class="text-muted">仓库为空</p>';
+                if (pagerEl) { pagerEl.style.display = 'none'; }
+                return;
+            }
+            let html = '<table class="table table-sm table-bordered"><thead><tr><th>名字</th><th>特性</th><th>等级</th><th>性格</th><th>异色</th><th>操作</th></tr></thead><tbody>';
+            slice.forEach(p => {
+                const nat = (p.nature != null ? p.nature : 0);
+                const natStr = storageNatureShort[nat] || ('性格' + nat);
+                const isShiny = (p.shiny != null && p.shiny !== 0);
+                const shinyLabel = isShiny ? '<span class="badge bg-warning text-dark">异色</span>' : '普通';
+                const shinyBtnClass = isShiny ? 'btn-outline-secondary' : 'btn-warning';
+                const shinyBtnText = isShiny ? '取消异色' : '设为异色';
+                const shinyVal = isShiny ? 0 : 1;
+                html += '<tr style="cursor:pointer;" onclick="openEditPetAttrModal(' + p.catchTime + ', true)"><td>' + (p.name || '未知') + '</td><td>' + (p.trait ? p.trait : '无') + '</td><td>' + (p.level != null ? p.level : 1) + '</td><td>' + natStr + '</td><td onclick="event.stopPropagation();">' + shinyLabel + ' <button class="btn btn-sm ms-1 ' + shinyBtnClass + '" onclick="setPetShiny(' + p.catchTime + ',' + shinyVal + ',true)">' + shinyBtnText + '</button></td><td onclick="event.stopPropagation();"><button class="btn btn-primary btn-sm me-1" onclick="openEditPetAttrModal(' + p.catchTime + ', true)">编辑</button><button class="btn btn-danger btn-sm" onclick="deletePet(' + p.catchTime + ', true)">删除</button></td></tr>';
+            });
+            html += '</tbody></table>';
+            el.innerHTML = html;
+            if (pagerEl) {
+                pagerEl.style.display = 'block';
+                pagerEl.innerHTML = `<button class="btn btn-sm btn-outline-secondary me-1" ${curPage <= 0 ? 'disabled' : ''} onclick="goStoragePetsPage(-1)">上一页</button> 第 ${curPage + 1} / ${totalPages} 页（共 ${list.length} 只） <button class="btn btn-sm btn-outline-secondary ms-1" ${curPage >= totalPages - 1 ? 'disabled' : ''} onclick="goStoragePetsPage(1)">下一页</button>`;
+            }
+        }
+        function goStoragePetsPage(delta) {
+            const list = window.__storagePetsDetail || [];
+            const size = Math.max(1, parseInt(window.__storagePetsPageSize, 10) || 15);
+            const totalPages = Math.max(1, Math.ceil(list.length / size));
+            window.__storagePetsPage = Math.max(0, Math.min(totalPages - 1, (window.__storagePetsPage || 0) + delta));
+            renderStoragePets();
+        }
+        
+        async function deletePet(catchTime, fromStorage) {
+            if (!currentUserId) return;
+            if (!confirm('确定删除该精灵？')) return;
+            try {
+                const res = await fetch(`${API}/gm/pet/delete`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, catchTime: catchTime, fromStorage: fromStorage })
+                });
+                const data = await res.json();
+                alert(data.success ? '删除成功' : data.message);
+                if (data.success) showUserDetail(currentUserId);
+            } catch (e) { alert('请求失败: ' + e.message); }
+        }
+
+        async function setPetShiny(catchTime, shiny, fromStorage) {
+            if (!currentUserId) return;
+            try {
+                const res = await fetch(`${API}/gm/pet/setShiny`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, catchTime: catchTime, shiny: shiny, fromStorage: fromStorage })
+                });
+                const text = await res.text();
+                let data = {};
+                try { data = JSON.parse(text); } catch (_) {
+                    alert('请求失败: 服务器返回非 JSON（可能未重启或端口错误）。状态: ' + res.status + '\n' + (text.slice(0, 200) || ''));
+                    return;
+                }
+                alert(data.success ? '设置成功' : (data.message || '设置失败'));
+                if (data.success) showUserDetail(currentUserId);
+            } catch (e) { alert('请求失败: ' + e.message); }
+        }
+        
+        async function gmExpAdd() {
+            if (!currentUserId) return alert('请先选择用户');
+            const amount = parseInt(document.getElementById('expAddAmount').value) || 0;
+            if (amount < 0) return alert('发放数量不能为负');
+            try {
+                const res = await fetch(`${API}/gm/exp/add`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, amount: amount })
+                });
+                const data = await res.json();
+                alert(data.success ? '发放成功，当前经验池: ' + data.expPool : data.message);
+                if (data.success) showUserDetail(currentUserId);
+            } catch (e) { alert('请求失败: ' + e.message); }
+        }
+        
+        async function loadTitlesForGM() {
+            const sel = document.getElementById('gmTitleSelect');
+            if (!sel) return;
+            if (window.__gmTitlesLoaded) {
+                fillTitleSelect(sel, window.__gmTitles);
+                return;
+            }
+            try {
+                const res = await fetch(`${API}/gm/titles`);
+                const data = await res.json();
+                if (data.success && data.data && data.data.length) {
+                    window.__gmTitles = data.data;
+                    window.__gmTitlesLoaded = true;
+                    fillTitleSelect(sel, data.data);
+                } else {
+                    sel.innerHTML = '<option value="">无称号数据</option>';
+                }
+            } catch (e) {
+                sel.innerHTML = '<option value="">加载失败</option>';
+            }
+        }
+        function fillTitleSelect(sel, list) {
+            sel.innerHTML = '<option value="">请选择称号</option>' + list
+                .filter(t => t.id > 0)
+                .map(t => `<option value="${t.id}">${t.id} - ${(t.name || '').replace(/</g, '&lt;')}</option>`)
+                .join('');
+        }
+        async function gmTitleGrant() {
+            if (!currentUserId) return alert('请先选择用户');
+            const titleId = parseInt(document.getElementById('gmTitleSelect').value, 10);
+            if (!titleId || titleId <= 0) return alert('请选择要发放的称号');
+            try {
+                const res = await fetch(`${API}/gm/title/grant`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, titleId: titleId })
+                });
+                const data = await res.json();
+                alert(data.success ? (data.message || '发放成功') : (data.message || '发放失败'));
+                if (data.success) showUserDetail(currentUserId);
+            } catch (e) { alert('请求失败: ' + e.message); }
+        }
+        
+        async function gmExpSet() {
+            if (!currentUserId) return alert('请先选择用户');
+            const value = parseInt(document.getElementById('expSetValue').value);
+            if (isNaN(value) || value < 0) return alert('请输入有效非负数值');
+            try {
+                const res = await fetch(`${API}/gm/exp/set`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId, value: value })
+                });
+                const data = await res.json();
+                alert(data.success ? '设置成功，当前经验池: ' + data.expPool : data.message);
+                if (data.success) showUserDetail(currentUserId);
+            } catch (e) { alert('请求失败: ' + e.message); }
+        }
+        
+        async function deleteAccount() {
+            if (!currentUserId) return;
+            if (!confirm('确定删除该账号？此操作不可恢复！')) return;
+            try {
+                const res = await fetch(`${API}/gm/user/delete`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ userId: currentUserId })
+                });
+                const data = await res.json();
+                alert(data.success ? '账号已删除' : data.message);
+                if (data.success) { currentUserId = null; document.getElementById('userDetail').style.display = 'none'; loadUsers(); loadDashboard(); }
+            } catch (e) { alert('请求失败: ' + e.message); }
+        }
+        
+        async function createAccount() {
+            const email = document.getElementById('newEmail').value.trim();
+            const password = document.getElementById('newPassword').value.trim();
+            const nickname = document.getElementById('newNickname').value.trim();
+            if (!email || !password) { alert('请填写邮箱和密码'); return; }
+            try {
+                const res = await fetch(`${API}/gm/user/create`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email: email, password: password, nickname: nickname })
+                });
+                const data = await res.json();
+                alert(data.success ? '创建成功，用户ID: ' + data.userId : data.message);
+                if (data.success) { document.getElementById('newEmail').value = ''; document.getElementById('newPassword').value = ''; document.getElementById('newNickname').value = ''; loadUsers(); loadDashboard(); }
+            } catch (e) { alert('请求失败: ' + e.message); }
+        }
+        
+        // 元神赋形
+        async function loadFusionConfig() {
+            try {
+                const res = await fetch(`${API}/gm/fusion/config`);
+                const data = await res.json();
+                if (!data.success) { alert(data.message || '加载失败'); return; }
+                const cfg = data.data || {};
+                const seconds = cfg.transformSeconds || 3600;
+                const hours = seconds / 3600;
+                const hEl = document.getElementById('fusion-transform-hours');
+                if (hEl) hEl.value = hours <= 1/60 ? (1/60).toFixed(4) : hours.toFixed(2);
+                const formulasEl = document.getElementById('fusion-formulas-json');
+                if (formulasEl) formulasEl.value = JSON.stringify(cfg.formulas || [], null, 2);
+            } catch (e) { alert('加载元神赋形配置失败: ' + e.message); }
+        }
+        function setFusionPreset(hours) {
+            const el = document.getElementById('fusion-transform-hours');
+            if (el) el.value = hours <= 1/60 ? (1/60).toFixed(4) : hours.toFixed(2);
+        }
+        async function saveFusionTransformOnly() {
+            const el = document.getElementById('fusion-transform-hours');
+            let hours = parseFloat(el && el.value ? el.value : 0);
+            if (isNaN(hours) || hours <= 0) { alert('请先填写赋形时间（小时）'); return; }
+            const seconds = Math.max(1, Math.round(hours * 3600));
+            try {
+                const res = await fetch(`${API}/gm/fusion/config`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ transformSeconds: seconds })
+                });
+                const data = await res.json();
+                alert(data.success ? ('赋形时间已更新：' + seconds + ' 秒') : (data.message || '保存失败'));
+            } catch (e) { alert('保存失败: ' + e.message); }
+        }
+        async function saveFusionConfig() {
+            const hEl = document.getElementById('fusion-transform-hours');
+            let hours = parseFloat(hEl && hEl.value ? hEl.value : 0);
+            if (isNaN(hours) || hours <= 0) { alert('请填写合法的赋形时间（小时）'); return; }
+            const seconds = Math.max(1, Math.round(hours * 3600));
+            let formulas = [];
+            const txt = document.getElementById('fusion-formulas-json').value.trim();
+            if (txt) {
+                try { formulas = JSON.parse(txt); } catch (e) { alert('融合公式 JSON 解析失败'); return; }
+            }
+            try {
+                const res = await fetch(`${API}/gm/fusion/config`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ transformSeconds: seconds, formulas: formulas })
+                });
+                const data = await res.json();
+                alert(data.success ? '保存成功' : (data.message || '保存失败'));
+                if (data.success) loadFusionConfig();
+            } catch (e) { alert('保存失败: ' + e.message); }
+        }
+        
+        // 扭蛋机
+        async function gachaLoadList() {
+            const el = document.getElementById('gachaListContainer');
+            el.innerHTML = '<p class="text-muted">加载中...</p>';
+            try {
+                const res = await fetch(`${API}/gm/gacha/list`);
+                const data = await res.json();
+                if (data.success && data.data) {
+                    gachaListData = data.data;
+                    if (data.data.length === 0) {
+                        el.innerHTML = '<p class="text-muted">当前无奖励，点击「添加奖励」添加。</p>';
+                    } else {
+                        el.innerHTML = data.data.map(item => {
+                            const name = (item.name || '未知道具').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+                            return `<div class="user-item d-flex justify-content-between align-items-center">
+                                <div><strong>#${item.index} ${name}</strong> (ID: ${item.itemID}) · 权重: ${item.weight} ${item.isGold ? '· 金豆' : ''}</div>
+                                <div><button class="btn btn-warning btn-sm me-1" onclick="gachaEditByIndex(${item.index})">修改</button><button class="btn btn-danger btn-sm" onclick="gachaRemove(${item.index})">删除</button></div>
+                            </div>`;
+                        }).join('');
+                    }
+                } else {
+                    el.innerHTML = '<p class="text-danger">加载失败</p>';
+                }
+            } catch (e) {
+                el.innerHTML = '<p class="text-danger">加载失败，请确认服务已启动且端口 8080 可访问</p>';
+            }
+        }
+        function gachaShowAdd() {
+            document.getElementById('gachaAddItemId').value = '';
+            document.getElementById('gachaAddWeight').value = '5';
+            document.getElementById('gachaAddName').value = '';
+            document.getElementById('gachaAddIsGold').checked = false;
+            gachaAddModalInstance.show();
+        }
+        async function gachaAddReward() {
+            const itemID = parseInt(document.getElementById('gachaAddItemId').value);
+            const weight = parseInt(document.getElementById('gachaAddWeight').value) || 1;
+            const name = document.getElementById('gachaAddName').value.trim();
+            const isGold = document.getElementById('gachaAddIsGold').checked;
+            if (!itemID || itemID <= 0) { alert('请填写道具ID'); return; }
+            try {
+                const res = await fetch(`${API}/gm/gacha/add`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ itemID, weight, name, isGold })
+                });
+                const data = await res.json();
+                alert(data.success ? '添加成功' : data.message);
+                if (data.success) { gachaAddModalInstance.hide(); gachaLoadList(); }
+            } catch (e) { alert('添加失败: ' + e.message); }
+        }
+        function gachaEditByIndex(index) {
+            const item = gachaListData.find(r => r.index === index);
+            if (!item) return;
+            document.getElementById('gachaEditIndex').value = index;
+            document.getElementById('gachaEditItemId').value = item.itemID;
+            document.getElementById('gachaEditWeight').value = item.weight;
+            document.getElementById('gachaEditName').value = item.name || '';
+            document.getElementById('gachaEditIsGold').checked = !!item.isGold;
+            gachaEditModalInstance.show();
+        }
+        async function gachaSaveEdit() {
+            const index = parseInt(document.getElementById('gachaEditIndex').value);
+            const itemID = parseInt(document.getElementById('gachaEditItemId').value);
+            const weight = parseInt(document.getElementById('gachaEditWeight').value) || 1;
+            const name = document.getElementById('gachaEditName').value.trim();
+            const isGold = document.getElementById('gachaEditIsGold').checked;
+            try {
+                const res = await fetch(`${API}/gm/gacha/update`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ index, itemID, weight, name, isGold })
+                });
+                const data = await res.json();
+                alert(data.success ? '修改成功' : data.message);
+                if (data.success) { gachaEditModalInstance.hide(); gachaLoadList(); }
+            } catch (e) { alert('修改失败: ' + e.message); }
+        }
+        async function gachaRemove(index) {
+            if (!confirm('确定删除该奖励？')) return;
+            try {
+                const res = await fetch(`${API}/gm/gacha/remove`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ index })
+                });
+                const data = await res.json();
+                alert(data.success ? '删除成功' : data.message);
+                if (data.success) gachaLoadList();
+            } catch (e) { alert('删除失败: ' + e.message); }
+        }
+        async function gachaSaveConfig() {
+            try {
+                const res = await fetch(`${API}/gm/gacha/save`, { method: 'POST' });
+                const data = await res.json();
+                alert(data.success ? '已保存到 gacha_rewards.json' : data.message);
+            } catch (e) { alert('保存失败: ' + e.message); }
+        }
+    </script>
+</body>
+</html>

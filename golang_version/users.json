@@ -1,0 +1,5095 @@
+{
+  "users": {
+    "100000001": {
+      "userId": 100000001,
+      "email": "test@local.seer",
+      "password": "123456",
+      "nickname": "测试赛尔",
+      "color": 3381759,
+      "registerTime": 1769569200,
+      "roleCreated": true,
+      "session": "mS�\u0016|���=���ia�L",
+      "sessionHex": "6d53a8167cccd1d33dec99f36961ac4c"
+    },
+    "100000002": {
+      "userId": 100000002,
+      "email": "123@local.seer",
+      "password": "cc03e747a6afbbcbf8be7668acfebee5",
+      "nickname": "1111",
+      "color": 0,
+      "registerTime": 1769656737,
+      "roleCreated": true,
+      "session": " իB I Y @\u0007    ,",
+      "sessionHex": "e6d5ab42d649ff598b4007c5f4a2fa2c"
+    },
+    "100000003": {
+      "userId": 100000003,
+      "email": "trst@local.seer",
+      "password": "cc03e747a6afbbcbf8be7668acfebee5",
+      "nickname": "100000003",
+      "color": 0,
+      "registerTime": 1769748261,
+      "roleCreated": false,
+      "session": " \u0004i    \" l+  p  ",
+      "sessionHex": "d90469c7d2fbad22e76c2b97c670e5c9"
+    },
+    "100000004": {
+      "userId": 100000004,
+      "email": "user539959368@example.com",
+      "password": "123456",
+      "nickname": "100000004",
+      "color": 0,
+      "registerTime": 1769769724,
+      "roleCreated": false
+    },
+    "100000005": {
+      "userId": 100000005,
+      "email": "admin@local.seer",
+      "password": "21232f297a57a5a743894a0e4a801fc3",
+      "nickname": "开源号",
+      "color": 65280,
+      "registerTime": 1769771333,
+      "roleCreated": true,
+      "session": "D\ufffd'\ufffd\ufffd/\ufffdSp\ufffd\ufffd\ufffd\"\ufffd\ufffdT",
+      "sessionHex": "44b827d0df2fa85370dae3ca22e09b54"
+    },
+    "100000006": {
+      "userId": 100000006,
+      "email": "123@local.com",
+      "password": "123456",
+      "nickname": "666",
+      "color": 65280,
+      "registerTime": 1769949943,
+      "roleCreated": true,
+      "session": " :   x \b  ! \u000e\t\u000f ",
+      "sessionHex": "9c3ad8dac878ce088fc921a10e090f90"
+    },
+    "100000007": {
+      "userId": 100000007,
+      "email": "1234@666.com",
+      "password": "1234",
+      "nickname": "100000007",
+      "color": 0,
+      "registerTime": 1769951888,
+      "roleCreated": false
+    },
+    "100000008": {
+      "userId": 100000008,
+      "email": "1234@local.seer",
+      "password": "123456",
+      "nickname": "666",
+      "color": 65280,
+      "registerTime": 1770524973,
+      "roleCreated": true,
+      "session": ", U  u  \u001f$  H  V",
+      "sessionHex": "2cc055bea575b7bc1f24dec048a79956"
+    }
+  },
+  "gameData": {
+    "100000001": {
+      "nick": "测试赛尔",
+      "color": 3381759,
+      "coins": 251800,
+      "gold": 699,
+      "energy": 100,
+      "pets": [
+        {
+          "id": 70,
+          "catchTime": 1773800422,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "雷伊",
+          "ev_hp": 255,
+          "ev_attack": 255,
+          "skills": [
+            10823,
+            20364,
+            10824,
+            20085
+          ],
+          "trait": 1024,
+          "currentHp": 346,
+          "skillPp": [
+            20,
+            20,
+            10,
+            30
+          ]
+        },
+        {
+          "id": 5005,
+          "catchTime": 1773800479,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "雷伊的幻影",
+          "trait": 1024
+        },
+        {
+          "id": 1447,
+          "catchTime": 1771823493,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "金翅托鲁克",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 166,
+          "catchTime": 1771823415,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "闪光波克尔",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 5005,
+          "catchTime": 1773818413,
+          "level": 100,
+          "dv": 5,
+          "nature": 11,
+          "exp": 0,
+          "name": ""
+        },
+        {
+          "id": 300,
+          "catchTime": 1771823431,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "谱尼",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "trait": 1027,
+          "shiny": 1
+        }
+      ],
+      "items": {
+        "100014": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100027": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100028": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100055": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100338": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100339": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100340": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100341": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300001": {
+          "count": 8,
+          "expireTime": 360000
+        },
+        "300006": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 6,
+          "expireTime": 360000
+        },
+        "300015": {
+          "count": 99,
+          "expireTime": 360000
+        },
+        "300025": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "300035": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "300376": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300377": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300378": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300379": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300380": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300381": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300650": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "400001": {
+          "count": 16
+        },
+        "400002": {
+          "count": 18
+        },
+        "400009": {
+          "count": 10
+        },
+        "400101": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400102": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400105": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400107": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400126": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "400140": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400417": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400654": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400655": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "500001": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "500502": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "500503": {
+          "count": 1,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [
+        100340,
+        100339,
+        100338,
+        100341
+      ],
+      "tasks": {
+        "1": {
+          "status": "completed"
+        },
+        "121": {
+          "status": "3"
+        },
+        "122": {
+          "status": "1",
+          "buf": {
+            "0": 1,
+            "1": 1,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "123": {
+          "status": "1"
+        },
+        "1237": {
+          "status": "3",
+          "completeTime": 1771921510
+        },
+        "2": {
+          "status": "completed"
+        },
+        "3": {
+          "status": "completed"
+        },
+        "303": {
+          "status": "3",
+          "completeTime": 1773800949
+        },
+        "305": {
+          "status": "3",
+          "completeTime": 1773801130
+        },
+        "308": {
+          "status": "3",
+          "completeTime": 1773801266
+        },
+        "4": {
+          "status": "completed"
+        },
+        "5": {
+          "status": "completed"
+        },
+        "758": {
+          "status": "3",
+          "completeTime": 1771921252
+        },
+        "759": {
+          "status": "3",
+          "completeTime": 1771921266
+        },
+        "760": {
+          "status": "3",
+          "completeTime": 1771921281
+        },
+        "761": {
+          "status": "3",
+          "completeTime": 1771921295
+        },
+        "762": {
+          "status": "3",
+          "completeTime": 1771921310
+        },
+        "763": {
+          "status": "3",
+          "completeTime": 1771921324
+        },
+        "85": {
+          "status": "3"
+        },
+        "86": {
+          "status": "3"
+        },
+        "87": {
+          "status": "3"
+        },
+        "88": {
+          "status": "3"
+        },
+        "9": {
+          "status": "3"
+        },
+        "94": {
+          "status": "1",
+          "buf": {
+            "0": 1,
+            "1": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        }
+      },
+      "petBook": {
+        "166": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        }
+      },
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 2,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 5,
+        "vipLevel": 12,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 1772351486,
+        "freshManBonus": 0,
+        "superEnergy": 1000,
+        "superLevel": 12,
+        "superStage": 1,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1769569200,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": true
+      },
+      "mapId": 1,
+      "posX": 475,
+      "posY": 395,
+      "fitments": [],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 0,
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 0,
+      "maxStage": 0,
+      "curFreshStage": 0,
+      "maxFreshStage": 0,
+      "freshTowerRewardClaimed": null,
+      "braveTowerRewardClaimed": null,
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [
+        {
+          "id": 7,
+          "catchTime": 1768449799,
+          "level": 5,
+          "dv": 17,
+          "nature": 2,
+          "exp": 0,
+          "name": "小火猴"
+        },
+        {
+          "id": 10,
+          "catchTime": 1771823682,
+          "level": 2,
+          "dv": 24,
+          "nature": 0,
+          "exp": 0,
+          "name": "皮皮",
+          "shiny": 1
+        },
+        {
+          "id": 766,
+          "catchTime": 1771823892,
+          "level": 16,
+          "dv": 10,
+          "nature": 12,
+          "exp": 0,
+          "name": "多特",
+          "shiny": 1
+        },
+        {
+          "id": 166,
+          "catchTime": 1772706682,
+          "level": 80,
+          "dv": 31,
+          "nature": 7,
+          "exp": 0,
+          "name": "闪光波克尔",
+          "shiny": 1
+        },
+        {
+          "id": 70,
+          "catchTime": 1771823318,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "雷伊",
+          "ev_attack": 255,
+          "ev_sp": 255,
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 1000,
+          "catchTime": 1771823365,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "奥尔德",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            12259,
+            12263,
+            21171,
+            12264
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 261,
+          "catchTime": 1771921152,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "盖亚",
+          "ev_defence": 255,
+          "ev_sd": 255,
+          "skills": [
+            10714,
+            10712,
+            20312,
+            10715
+          ],
+          "trait": 1028,
+          "currentHp": 351,
+          "skillPp": [
+            5,
+            15,
+            5,
+            5
+          ]
+        },
+        {
+          "id": 261,
+          "catchTime": 1771823331,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "盖亚",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            10714,
+            10712,
+            20312,
+            10715
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 122,
+          "catchTime": 1771823719,
+          "level": 5,
+          "dv": 26,
+          "nature": 5,
+          "exp": 0,
+          "name": "达尔",
+          "shiny": 1
+        },
+        {
+          "id": 166,
+          "catchTime": 1769688319,
+          "level": 62,
+          "dv": 11,
+          "nature": 24,
+          "exp": 15845,
+          "name": "闪光波克尔"
+        }
+      ],
+      "friends": [
+        {
+          "userID": 100000002,
+          "timePoke": 0,
+          "addTime": 1769756353
+        }
+      ],
+      "expPool": 714000,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1773819605,
+      "roomPets": [
+        1771823892
+      ],
+      "defeatedSptBossIds": [
+        177,
+        30004,
+        30005,
+        501,
+        166,
+        50,
+        261,
+        42,
+        69,
+        113
+      ],
+      "defeatedXuanWuGuardianMask": 63,
+      "miningCount": {
+        "2001": 1,
+        "2002": 1
+      },
+      "miningDate": 20520,
+      "bufferRecord": null
+    },
+    "100000002": {
+      "nick": "1111",
+      "color": 16763904,
+      "coins": 1100,
+      "gold": 0,
+      "energy": 100,
+      "pets": [
+        {
+          "id": 9,
+          "catchTime": 1768449799,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "烈焰猩猩"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769673009,
+          "level": 5,
+          "dv": 26,
+          "nature": 6,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 33,
+          "catchTime": 1769701552,
+          "level": 5,
+          "dv": 7,
+          "nature": 24,
+          "exp": 0,
+          "name": "利牙鱼"
+        },
+        {
+          "id": 83,
+          "catchTime": 1769703456,
+          "level": 5,
+          "dv": 28,
+          "nature": 14,
+          "exp": 0,
+          "name": "依依"
+        },
+        {
+          "id": 46,
+          "catchTime": 1769705892,
+          "level": 1,
+          "dv": 3,
+          "nature": 23,
+          "exp": 0,
+          "name": "小蘑菇"
+        },
+        {
+          "id": 429,
+          "catchTime": 1770464634,
+          "level": 100,
+          "dv": 31,
+          "nature": 8,
+          "exp": 0,
+          "name": "艾克里桑",
+          "trait": 1027
+        }
+      ],
+      "items": {
+        "100001": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100002": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100003": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100011": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100014": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100024": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100025": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100026": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100044": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100052": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100053": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100054": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100055": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "100059": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100717": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300001": {
+          "count": 6,
+          "expireTime": 360000
+        },
+        "300002": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "400001": {
+          "count": 5
+        },
+        "400009": {
+          "count": 8
+        },
+        "400014": {
+          "count": 2
+        },
+        "400501": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "700002": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "700003": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "700004": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "700005": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "700006": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "700012": {
+          "count": 2,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [
+        100011,
+        100717,
+        100044,
+        100026
+      ],
+      "tasks": {
+        "1": {
+          "status": "completed"
+        },
+        "123": {
+          "status": "1"
+        },
+        "2": {
+          "status": "completed"
+        },
+        "3": {
+          "status": "completed"
+        },
+        "301": {
+          "status": "3",
+          "completeTime": 1769706155
+        },
+        "4": {
+          "status": "completed"
+        },
+        "402": {
+          "status": "3"
+        },
+        "407": {
+          "status": "3"
+        },
+        "5": {
+          "status": "completed"
+        },
+        "85": {
+          "status": "3"
+        },
+        "86": {
+          "status": "3"
+        },
+        "87": {
+          "status": "3"
+        },
+        "88": {
+          "status": "3"
+        },
+        "9": {
+          "status": "3"
+        },
+        "94": {
+          "status": "1",
+          "buf": {
+            "0": 1,
+            "1": 1,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "96": {
+          "status": "1"
+        }
+      },
+      "petBook": {
+        "46": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        }
+      },
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 1,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 1,
+        "vipLevel": 0,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 1772255725,
+        "freshManBonus": 0,
+        "superEnergy": 0,
+        "superLevel": 1,
+        "superStage": 1,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1769654838,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": false
+      },
+      "mapId": 40,
+      "posX": 193,
+      "posY": 287,
+      "fitments": [],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 0,
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 0,
+      "maxStage": 0,
+      "curFreshStage": 0,
+      "maxFreshStage": 0,
+      "freshTowerRewardClaimed": null,
+      "braveTowerRewardClaimed": null,
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [
+        {
+          "id": 13,
+          "catchTime": 1769662780,
+          "level": 3,
+          "dv": 24,
+          "nature": 15,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769663188,
+          "level": 5,
+          "dv": 4,
+          "nature": 1,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769662803,
+          "level": 5,
+          "dv": 31,
+          "nature": 1,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769663188,
+          "level": 5,
+          "dv": 4,
+          "nature": 1,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769662445,
+          "level": 5,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769663188,
+          "level": 5,
+          "dv": 4,
+          "nature": 1,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769663188,
+          "level": 5,
+          "dv": 4,
+          "nature": 1,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769666184,
+          "level": 5,
+          "dv": 29,
+          "nature": 6,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769663707,
+          "level": 5,
+          "dv": 31,
+          "nature": 5,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 13,
+          "catchTime": 1769666203,
+          "level": 5,
+          "dv": 19,
+          "nature": 11,
+          "exp": 0,
+          "name": "比比鼠"
+        },
+        {
+          "id": 46,
+          "catchTime": 1769705151,
+          "level": 1,
+          "dv": 29,
+          "nature": 20,
+          "exp": 0,
+          "name": "小蘑菇"
+        },
+        {
+          "id": 125,
+          "catchTime": 1770464856,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "萨格罗斯",
+          "trait": 1027
+        },
+        {
+          "id": 261,
+          "catchTime": 1770464898,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "盖亚",
+          "trait": 1027
+        }
+      ],
+      "friends": [
+        {
+          "userID": 100000001,
+          "timePoke": 0,
+          "addTime": 1769756367
+        }
+      ],
+      "expPool": 900000000,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1769764628,
+      "miningCount": {
+        "1": 5,
+        "4": 2,
+        "5": 2,
+        "6": 2
+      },
+      "miningDate": 20483,
+      "bufferRecord": null
+    },
+    "100000005": {
+      "nick": "开源号",
+      "color": 65280,
+      "coins": 106043196,
+      "gold": 7762,
+      "energy": 100,
+      "pets": [
+        {
+          "id": 70,
+          "catchTime": 1772980070,
+          "level": 100,
+          "dv": 31,
+          "nature": 5,
+          "exp": 0,
+          "name": "雷伊",
+          "ev_hp": 255,
+          "ev_attack": 255,
+          "bonus_hp": 1,
+          "bonus_attack": 2,
+          "skills": [
+            10823,
+            20364,
+            10825,
+            20085
+          ],
+          "trait": 1027,
+          "currentHp": 347,
+          "skillPp": [
+            20,
+            20,
+            2,
+            30
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 368,
+          "catchTime": 1773664775,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "炽翼蝶",
+          "skills": [
+            10910,
+            20415,
+            10907,
+            10911
+          ]
+        },
+        {
+          "id": 271,
+          "catchTime": 1773664789,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "迪修眼",
+          "skills": [
+            20332,
+            10753,
+            20333,
+            10751
+          ]
+        },
+        {
+          "id": 270,
+          "catchTime": 1773327505,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "刹洛眼",
+          "skills": [
+            10747,
+            20330,
+            10744,
+            10748
+          ]
+        },
+        {
+          "id": 124,
+          "catchTime": 1773664292,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "英卡洛斯",
+          "skills": [
+            10369,
+            10368,
+            26027,
+            10364
+          ]
+        },
+        {
+          "id": 125,
+          "catchTime": 1773664290,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "萨格罗斯",
+          "skills": [
+            10374,
+            20163,
+            10378,
+            10375
+          ]
+        }
+      ],
+      "items": {
+        "1000002": {
+          "count": 2
+        },
+        "100014": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "100027": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100028": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100044": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100052": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100053": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100054": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100055": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100070": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100162": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100202": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100203": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100204": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100205": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100223": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100320": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100321": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100322": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100323": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100334": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100338": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100339": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100340": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100341": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100489": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100490": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100493": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100504": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100506": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100507": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100512": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100515": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100531": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100532": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100535": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100564": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100582": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100583": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100585": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100586": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100717": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100731": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100732": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100733": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100734": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100755": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100756": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100757": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100758": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100861": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100862": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100865": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300138": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300139": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300140": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300178": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300179": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300180": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300181": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300208": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300210": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300211": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300271": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300273": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "1300274": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300001": {
+          "count": 86,
+          "expireTime": 360000
+        },
+        "300002": {
+          "count": 145,
+          "expireTime": 360000
+        },
+        "300003": {
+          "count": 99,
+          "expireTime": 360000
+        },
+        "300004": {
+          "count": 440,
+          "expireTime": 360000
+        },
+        "300006": {
+          "count": 43,
+          "expireTime": 360000
+        },
+        "300009": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 57,
+          "expireTime": 360000
+        },
+        "300012": {
+          "count": 114,
+          "expireTime": 360000
+        },
+        "300013": {
+          "count": 100,
+          "expireTime": 360000
+        },
+        "300014": {
+          "count": 52,
+          "expireTime": 360000
+        },
+        "300015": {
+          "count": 968,
+          "expireTime": 360000
+        },
+        "300016": {
+          "count": 51,
+          "expireTime": 360000
+        },
+        "300017": {
+          "count": 99,
+          "expireTime": 360000
+        },
+        "300018": {
+          "count": 1142,
+          "expireTime": 360000
+        },
+        "300019": {
+          "count": 10,
+          "expireTime": 360000
+        },
+        "300024": {
+          "count": 26,
+          "expireTime": 360000
+        },
+        "300025": {
+          "count": 39,
+          "expireTime": 360000
+        },
+        "300026": {
+          "count": 38,
+          "expireTime": 360000
+        },
+        "300035": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "300042": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300043": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300047": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300050": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300053": {
+          "count": 38,
+          "expireTime": 360000
+        },
+        "300054": {
+          "count": 44,
+          "expireTime": 360000
+        },
+        "300152": {
+          "count": 4,
+          "expireTime": 360000
+        },
+        "300153": {
+          "count": 13,
+          "expireTime": 360000
+        },
+        "300376": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300377": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300378": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300379": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300380": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300381": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300433": {
+          "count": 28,
+          "expireTime": 360000
+        },
+        "300630": {
+          "count": 36,
+          "expireTime": 360000
+        },
+        "300651": {
+          "count": 45,
+          "expireTime": 360000
+        },
+        "400001": {
+          "count": 7
+        },
+        "400003": {
+          "count": 1
+        },
+        "400004": {
+          "count": 30
+        },
+        "400005": {
+          "count": 1002
+        },
+        "400006": {
+          "count": 1002
+        },
+        "400007": {
+          "count": 971
+        },
+        "400008": {
+          "count": 2
+        },
+        "400028": {
+          "count": 1000,
+          "expireTime": 360000
+        },
+        "400029": {
+          "count": 1
+        },
+        "400031": {
+          "count": 973
+        },
+        "400032": {
+          "count": 2
+        },
+        "400034": {
+          "count": 1
+        },
+        "400101": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400125": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400127": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400136": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400137": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400139": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400145": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400147": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400151": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400153": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400159": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400161": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400215": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400230": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400254": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400271": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "400314": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400402": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400501": {
+          "count": 844,
+          "expireTime": 360000
+        },
+        "400651": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400652": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400653": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400654": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400655": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400656": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "403022": {
+          "count": 50,
+          "expireTime": 360000
+        },
+        "403023": {
+          "count": 50,
+          "expireTime": 360000
+        },
+        "500002": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "500013": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "500015": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "500620": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "600006": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "600007": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "600008": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "700001": {
+          "count": 2,
+          "expireTime": 360000
+        },
+        "700002": {
+          "count": 4,
+          "expireTime": 360000
+        },
+        "700003": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "700004": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "700005": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "700006": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "700007": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "700008": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "700009": {
+          "count": 3,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [
+        1300180,
+        1300179,
+        1300178,
+        1300181
+      ],
+      "tasks": {
+        "10": {
+          "status": "3"
+        },
+        "1025": {
+          "status": "1"
+        },
+        "12": {
+          "status": "1"
+        },
+        "121": {
+          "status": "3"
+        },
+        "122": {
+          "status": "1",
+          "buf": {
+            "0": 1,
+            "1": 1,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "123": {
+          "status": "1"
+        },
+        "1237": {
+          "status": "3",
+          "completeTime": 1771921095
+        },
+        "19": {
+          "status": "3",
+          "buf": {
+            "0": 1,
+            "1": 1,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "301": {
+          "status": "3",
+          "completeTime": 1771511273
+        },
+        "302": {
+          "status": "3",
+          "completeTime": 1771511273
+        },
+        "303": {
+          "status": "3",
+          "completeTime": 1771511273
+        },
+        "305": {
+          "status": "3",
+          "completeTime": 1771511273
+        },
+        "307": {
+          "status": "3",
+          "completeTime": 1771511273
+        },
+        "308": {
+          "status": "3",
+          "completeTime": 1771511273
+        },
+        "4": {
+          "status": "3"
+        },
+        "622": {
+          "status": "1",
+          "buf": {
+            "0": 1,
+            "1": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "627": {
+          "status": "1",
+          "buf": {
+            "0": 1,
+            "1": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "758": {
+          "status": "3",
+          "completeTime": 1771908584
+        },
+        "759": {
+          "status": "3",
+          "completeTime": 1771908612
+        },
+        "760": {
+          "status": "3",
+          "completeTime": 1771908625
+        },
+        "761": {
+          "status": "3",
+          "completeTime": 1771908648
+        },
+        "762": {
+          "status": "3",
+          "completeTime": 1771908665
+        },
+        "763": {
+          "status": "3",
+          "completeTime": 1771908679
+        },
+        "81": {
+          "status": "1"
+        },
+        "85": {
+          "status": "3"
+        },
+        "86": {
+          "status": "3"
+        },
+        "87": {
+          "status": "3"
+        },
+        "88": {
+          "status": "3"
+        },
+        "90": {
+          "status": "3",
+          "buf": {
+            "0": 1,
+            "1": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "92": {
+          "status": "3",
+          "buf": {
+            "0": 1,
+            "1": 1,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "94": {
+          "status": "1",
+          "buf": {
+            "0": 1,
+            "1": 1,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "95": {
+          "status": "3",
+          "buf": {
+            "0": 1,
+            "1": 1,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "96": {
+          "status": "3",
+          "buf": {
+            "0": 1,
+            "1": 1,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        },
+        "98": {
+          "status": "1",
+          "buf": {
+            "0": 1,
+            "1": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          }
+        }
+      },
+      "petBook": {
+        "166": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "223": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "260": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "261": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "301": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "303": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "304": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "328": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "41": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "46": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "501": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "504": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "588": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "68": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "69": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        },
+        "71": {
+          "encountered": 1,
+          "caught": 1,
+          "killed": 0
+        }
+      },
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 3,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 5,
+        "vipLevel": 12,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 1857992125,
+        "freshManBonus": 0,
+        "superEnergy": 0,
+        "superLevel": 12,
+        "superStage": 1,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1769771340,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": true,
+        "func": "AAQAAAAAAAAAAAAAAAAAAAAAAAA="
+      },
+      "mapId": 10,
+      "posX": 462,
+      "posY": 368,
+      "fitments": [
+        {
+          "id": 500620,
+          "x": 326,
+          "y": 226,
+          "dir": 0,
+          "status": 0
+        },
+        {
+          "id": 500002,
+          "x": 0,
+          "y": 0,
+          "dir": 0,
+          "status": 0
+        }
+      ],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 75,
+      "titleIds": [
+        8,
+        16,
+        175,
+        75,
+        203
+      ],
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 22,
+      "maxStage": 22,
+      "curFreshStage": 2,
+      "maxFreshStage": 30,
+      "freshTowerRewardClaimed": [
+        1
+      ],
+      "braveTowerRewardClaimed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "petCollectRewardClaimed": [
+        2
+      ],
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [
+        {
+          "id": 10,
+          "catchTime": 1770526843,
+          "level": 2,
+          "dv": 20,
+          "nature": 24,
+          "exp": 0,
+          "name": "皮皮"
+        },
+        {
+          "id": 46,
+          "catchTime": 1770548041,
+          "level": 1,
+          "dv": 31,
+          "nature": 23,
+          "exp": 0,
+          "name": "小蘑菇"
+        },
+        {
+          "id": 27,
+          "catchTime": 1770820525,
+          "level": 50,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "小豆芽",
+          "shiny": 1
+        },
+        {
+          "id": 164,
+          "catchTime": 1770992286,
+          "level": 1,
+          "dv": 14,
+          "nature": 2,
+          "exp": 0,
+          "name": "闪光皮皮",
+          "shiny": 1
+        },
+        {
+          "id": 166,
+          "catchTime": 1770469851,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "闪光波克尔",
+          "ev_sd": 1,
+          "skills": [
+            10036,
+            10057,
+            20210,
+            10486
+          ],
+          "trait": 1009
+        },
+        {
+          "id": 29,
+          "catchTime": 1770440957,
+          "level": 100,
+          "dv": 31,
+          "nature": 8,
+          "exp": 0,
+          "name": "魔花仙子",
+          "skills": [
+            20019,
+            10017,
+            20020,
+            20021
+          ],
+          "trait": 1024
+        },
+        {
+          "id": 10,
+          "catchTime": 1771139846,
+          "level": 2,
+          "dv": 12,
+          "nature": 23,
+          "exp": 0,
+          "name": "皮皮"
+        },
+        {
+          "id": 164,
+          "catchTime": 1771152448,
+          "level": 2,
+          "dv": 23,
+          "nature": 11,
+          "exp": 0,
+          "name": "闪光皮皮"
+        },
+        {
+          "id": 10,
+          "catchTime": 1771139846,
+          "level": 2,
+          "dv": 12,
+          "nature": 23,
+          "exp": 0,
+          "name": "皮皮",
+          "currentHp": 13,
+          "skillPp": [
+            35,
+            20,
+            20,
+            20
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 10,
+          "catchTime": 1770526843,
+          "level": 2,
+          "dv": 20,
+          "nature": 24,
+          "exp": 0,
+          "name": "皮皮",
+          "currentHp": 14,
+          "skillPp": [
+            35,
+            20,
+            20,
+            20
+          ]
+        },
+        {
+          "id": 164,
+          "catchTime": 1771152448,
+          "level": 2,
+          "dv": 23,
+          "nature": 11,
+          "exp": 0,
+          "name": "闪光皮皮",
+          "currentHp": 14,
+          "skillPp": [
+            35,
+            20,
+            20,
+            20
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 865,
+          "catchTime": 1769951929,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "托鲁克",
+          "ev_sa": 1,
+          "ev_sp": 1,
+          "skills": [
+            20992,
+            10060,
+            21070,
+            12079
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 865,
+          "catchTime": 1769951929,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "托鲁克",
+          "skills": [
+            20992,
+            10060,
+            21070,
+            12079
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 164,
+          "catchTime": 1771164153,
+          "level": 1,
+          "dv": 19,
+          "nature": 1,
+          "exp": 0,
+          "name": "闪光皮皮"
+        },
+        {
+          "id": 865,
+          "catchTime": 1769951929,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "托鲁克",
+          "skills": [
+            20992,
+            10060,
+            21070,
+            12079
+          ],
+          "currentHp": 391,
+          "skillPp": [
+            10,
+            20,
+            5,
+            5
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 164,
+          "catchTime": 1771164278,
+          "level": 2,
+          "dv": 15,
+          "nature": 16,
+          "exp": 0,
+          "name": "闪光皮皮"
+        },
+        {
+          "id": 166,
+          "catchTime": 1770469851,
+          "level": 80,
+          "dv": 31,
+          "nature": 2,
+          "exp": 781,
+          "name": "闪光波克尔",
+          "ev_sd": 1,
+          "skills": [
+            10036,
+            10057,
+            20210,
+            10486
+          ],
+          "trait": 1009
+        },
+        {
+          "id": 70,
+          "catchTime": 1770541935,
+          "level": 99,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "雷伊",
+          "ev_attack": 255,
+          "ev_sp": 255,
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 865,
+          "catchTime": 1769951929,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "托鲁克",
+          "skills": [
+            20992,
+            10060,
+            21070,
+            12079
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 10,
+          "catchTime": 1771226128,
+          "level": 1,
+          "dv": 8,
+          "nature": 17,
+          "exp": 0,
+          "name": "皮皮"
+        },
+        {
+          "id": 234,
+          "catchTime": 1771226427,
+          "level": 43,
+          "dv": 20,
+          "nature": 0,
+          "exp": 0,
+          "name": "伊娅丝",
+          "shiny": 1
+        },
+        {
+          "id": 232,
+          "catchTime": 1771226389,
+          "level": 13,
+          "dv": 19,
+          "nature": 2,
+          "exp": 0,
+          "name": "伊娃",
+          "shiny": 1
+        },
+        {
+          "id": 4150,
+          "catchTime": 1769774896,
+          "level": 80,
+          "dv": 15,
+          "nature": 24,
+          "exp": 0,
+          "name": "拂晓兔",
+          "currentHp": 254,
+          "skillPp": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 284,
+          "catchTime": 1771229756,
+          "level": 5,
+          "dv": 0,
+          "nature": 19,
+          "exp": 0,
+          "name": "闪光利利",
+          "shiny": 1
+        },
+        {
+          "id": 505,
+          "catchTime": 1770378843,
+          "level": 90,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "阿瑞斯",
+          "shiny": 1
+        },
+        {
+          "id": 70,
+          "catchTime": 1770541935,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "雷伊",
+          "ev_attack": 255,
+          "ev_sp": 255,
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 505,
+          "catchTime": 1770378843,
+          "level": 90,
+          "dv": 31,
+          "nature": 0,
+          "exp": 120,
+          "name": "阿瑞斯",
+          "shiny": 1
+        },
+        {
+          "id": 216,
+          "catchTime": 1770893291,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "哈莫雷特",
+          "ev_hp": 200,
+          "ev_attack": 110,
+          "ev_sd": 200,
+          "trait": 1024,
+          "shiny": 1
+        },
+        {
+          "id": 474,
+          "catchTime": 1772203163,
+          "level": 22,
+          "dv": 20,
+          "nature": 2,
+          "exp": 0,
+          "name": "该伊"
+        },
+        {
+          "id": 448,
+          "catchTime": 1772206784,
+          "level": 25,
+          "dv": 16,
+          "nature": 4,
+          "exp": 0,
+          "name": "卡拉",
+          "shiny": 1
+        },
+        {
+          "id": 454,
+          "catchTime": 1772199646,
+          "level": 30,
+          "dv": 29,
+          "nature": 0,
+          "exp": 0,
+          "name": "霹雳兽"
+        },
+        {
+          "id": 96,
+          "catchTime": 1772255579,
+          "level": 95,
+          "dv": 18,
+          "nature": 13,
+          "exp": 0,
+          "name": "尼斯克"
+        },
+        {
+          "id": 27,
+          "catchTime": 1772362090,
+          "level": 12,
+          "dv": 11,
+          "nature": 21,
+          "exp": 0,
+          "name": "小豆芽",
+          "shiny": 1
+        },
+        {
+          "id": 65,
+          "catchTime": 1772362028,
+          "level": 5,
+          "dv": 0,
+          "nature": 21,
+          "exp": 0,
+          "name": "林克",
+          "shiny": 1
+        },
+        {
+          "id": 6,
+          "catchTime": 1768449796,
+          "level": 53,
+          "dv": 20,
+          "nature": 13,
+          "exp": 18611,
+          "name": "巴鲁斯",
+          "ev_attack": 2,
+          "ev_sa": 3,
+          "ev_sp": 2,
+          "skills": [
+            20003,
+            10005,
+            10019,
+            10018
+          ]
+        },
+        {
+          "id": 300,
+          "catchTime": 1770292927,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "谱尼",
+          "ev_sa": 255,
+          "ev_sp": 255,
+          "skills": [
+            11261,
+            10998,
+            11000,
+            20500
+          ],
+          "trait": 1027,
+          "currentHp": 381,
+          "skillPp": [
+            5,
+            15,
+            5,
+            10
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 303,
+          "catchTime": 1770863470,
+          "level": 84,
+          "dv": 31,
+          "nature": 15,
+          "exp": 29730,
+          "name": "丽莎布布",
+          "ev_hp": 255,
+          "ev_attack": 255,
+          "trait": 1019,
+          "shiny": 1
+        },
+        {
+          "id": 3,
+          "catchTime": 1770820501,
+          "level": 50,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "布布花",
+          "shiny": 1
+        },
+        {
+          "id": 33,
+          "catchTime": 1772534670,
+          "level": 15,
+          "dv": 30,
+          "nature": 4,
+          "exp": 0,
+          "name": "利牙鱼",
+          "shiny": 1
+        },
+        {
+          "id": 304,
+          "catchTime": 1772539287,
+          "level": 1,
+          "dv": 26,
+          "nature": 19,
+          "exp": 0,
+          "name": "伊优达",
+          "trait": 1042
+        },
+        {
+          "id": 198,
+          "catchTime": 1772540853,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "小鳍鱼"
+        },
+        {
+          "id": 216,
+          "catchTime": 1770893291,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "哈莫雷特",
+          "ev_hp": 200,
+          "ev_attack": 110,
+          "ev_sd": 200,
+          "skills": [
+            20266,
+            10622,
+            20269,
+            10618
+          ],
+          "trait": 1024
+        },
+        {
+          "id": 198,
+          "catchTime": 1772540861,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "小鳍鱼"
+        },
+        {
+          "id": 501,
+          "catchTime": 1772619055,
+          "level": 1,
+          "dv": 7,
+          "nature": 13,
+          "exp": 0,
+          "name": "巴斯特",
+          "shiny": 1
+        },
+        {
+          "id": 6,
+          "catchTime": 1772540841,
+          "level": 1,
+          "dv": 1,
+          "nature": 5,
+          "exp": 0,
+          "name": "巴鲁斯",
+          "trait": 1032
+        },
+        {
+          "id": 416,
+          "catchTime": 1772624601,
+          "level": 4,
+          "dv": 9,
+          "nature": 17,
+          "exp": 0,
+          "name": "尼奥"
+        },
+        {
+          "id": 416,
+          "catchTime": 1772626249,
+          "level": 18,
+          "dv": 11,
+          "nature": 9,
+          "exp": 0,
+          "name": "尼奥"
+        },
+        {
+          "id": 77,
+          "catchTime": 1772625983,
+          "level": 16,
+          "dv": 13,
+          "nature": 17,
+          "exp": 0,
+          "name": "尼尔"
+        },
+        {
+          "id": 70,
+          "catchTime": 1770541935,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "雷伊",
+          "ev_sp": 255,
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 200,
+          "catchTime": 1772540857,
+          "level": 95,
+          "dv": 31,
+          "nature": 0,
+          "exp": 172,
+          "name": "鳞甲龙鱼",
+          "ev_attack": 5,
+          "trait": 1017
+        },
+        {
+          "id": 416,
+          "catchTime": 1772626829,
+          "level": 18,
+          "dv": 24,
+          "nature": 12,
+          "exp": 0,
+          "name": "尼奥"
+        },
+        {
+          "id": 6,
+          "catchTime": 1772540836,
+          "level": 1,
+          "dv": 29,
+          "nature": 4,
+          "exp": 0,
+          "name": "巴鲁斯",
+          "trait": 1039
+        },
+        {
+          "id": 77,
+          "catchTime": 1772626095,
+          "level": 17,
+          "dv": 18,
+          "nature": 1,
+          "exp": 0,
+          "name": "尼尔",
+          "shiny": 1
+        },
+        {
+          "id": 10,
+          "catchTime": 1772621550,
+          "level": 2,
+          "dv": 6,
+          "nature": 10,
+          "exp": 0,
+          "name": "皮皮"
+        },
+        {
+          "id": 6,
+          "catchTime": 1772540839,
+          "level": 1,
+          "dv": 20,
+          "nature": 2,
+          "exp": 0,
+          "name": "巴鲁斯",
+          "skills": [
+            10025,
+            20012,
+            10046,
+            10027
+          ],
+          "trait": 1037,
+          "currentHp": 12,
+          "skillPp": [
+            15,
+            30,
+            20,
+            10
+          ]
+        },
+        {
+          "id": 71,
+          "catchTime": 1772364446,
+          "level": 1,
+          "dv": 22,
+          "nature": 4,
+          "exp": 0,
+          "name": "派派"
+        },
+        {
+          "id": 77,
+          "catchTime": 1772627729,
+          "level": 16,
+          "dv": 3,
+          "nature": 20,
+          "exp": 0,
+          "name": "尼尔"
+        },
+        {
+          "id": 38,
+          "catchTime": 1770525607,
+          "level": 1,
+          "dv": 6,
+          "nature": 18,
+          "exp": 0,
+          "name": "火炎贝",
+          "skills": [
+            10086,
+            20045,
+            10087,
+            20046
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 70,
+          "catchTime": 1770541935,
+          "level": 99,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "雷伊",
+          "ev_attack": 255,
+          "ev_sp": 255,
+          "trait": 1027,
+          "currentHp": 280,
+          "skillPp": [
+            20,
+            30,
+            5,
+            5
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 125,
+          "catchTime": 1770465610,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "萨格罗斯",
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 413,
+          "catchTime": 1772448928,
+          "level": 100,
+          "dv": 31,
+          "nature": 16,
+          "exp": 0,
+          "name": "塞维尔",
+          "ev_hp": 255,
+          "ev_sd": 255,
+          "skills": [
+            11114,
+            20551,
+            20554,
+            11115
+          ],
+          "trait": 1022,
+          "currentHp": 444,
+          "skillPp": [
+            25,
+            10,
+            10,
+            5
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 261,
+          "catchTime": 1771921000,
+          "level": 100,
+          "dv": 31,
+          "nature": 22,
+          "exp": 0,
+          "name": "盖亚",
+          "ev_attack": 3,
+          "ev_sa": 1,
+          "ev_sp": 1,
+          "skills": [
+            10714,
+            10712,
+            20312,
+            10715
+          ],
+          "trait": 1028
+        },
+        {
+          "id": 12,
+          "catchTime": 1772626999,
+          "level": 100,
+          "dv": 2,
+          "nature": 4,
+          "exp": 0,
+          "name": "波克尔",
+          "skills": [
+            10057,
+            20002,
+            10036,
+            10039
+          ],
+          "trait": 1017
+        },
+        {
+          "id": 300,
+          "catchTime": 1770292927,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "谱尼",
+          "ev_sa": 255,
+          "ev_sp": 255,
+          "skills": [
+            11261,
+            10999,
+            11000,
+            20500
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 40,
+          "catchTime": 1770525607,
+          "level": 47,
+          "dv": 31,
+          "nature": 19,
+          "exp": 3848,
+          "name": "贝尔鲁斯",
+          "skills": [
+            20041,
+            10094,
+            20045,
+            20047
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 50,
+          "catchTime": 1770548729,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "阿克希亚",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "trait": 1022
+        },
+        {
+          "id": 164,
+          "catchTime": 1771163169,
+          "level": 2,
+          "dv": 8,
+          "nature": 21,
+          "exp": 0,
+          "name": "闪光皮皮"
+        },
+        {
+          "id": 166,
+          "catchTime": 1772628037,
+          "level": 45,
+          "dv": 28,
+          "nature": 18,
+          "exp": 3150,
+          "name": "闪光波克尔",
+          "trait": 1044
+        },
+        {
+          "id": 413,
+          "catchTime": 1772448932,
+          "level": 100,
+          "dv": 31,
+          "nature": 16,
+          "exp": 0,
+          "name": "塞维尔",
+          "ev_hp": 255,
+          "ev_sd": 255,
+          "skills": [
+            11114,
+            20551,
+            20554,
+            11115
+          ],
+          "trait": 1022,
+          "shiny": 1
+        },
+        {
+          "id": 256,
+          "catchTime": 1770446526,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "嘟咕噜王",
+          "skills": [
+            10698,
+            10699,
+            20304,
+            10697
+          ],
+          "trait": 1027
+        },
+        {
+          "id": 71,
+          "catchTime": 1772968925,
+          "level": 1,
+          "dv": 2,
+          "nature": 21,
+          "exp": 0,
+          "name": "派派"
+        },
+        {
+          "id": 71,
+          "catchTime": 1772968901,
+          "level": 1,
+          "dv": 17,
+          "nature": 6,
+          "exp": 0,
+          "name": "派派"
+        },
+        {
+          "id": 1337,
+          "catchTime": 1772973142,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "机械塔克林"
+        },
+        {
+          "id": 3194,
+          "catchTime": 1772980042,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "魔王·咤克斯",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            15877,
+            0,
+            0,
+            0
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 5008,
+          "catchTime": 1773068552,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "愤怒的化身",
+          "ev_hp": 255,
+          "ev_sp": 255
+        },
+        {
+          "id": 70,
+          "catchTime": 1771770893,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "雷伊",
+          "ev_attack": 3,
+          "ev_sa": 1,
+          "ev_sp": 1,
+          "skills": [
+            10170,
+            20087,
+            10175,
+            10176
+          ],
+          "trait": 1045,
+          "shiny": 1
+        },
+        {
+          "id": 71,
+          "catchTime": 1773144200,
+          "level": 1,
+          "dv": 4,
+          "nature": 1,
+          "exp": 0,
+          "name": "派派"
+        },
+        {
+          "id": 306,
+          "catchTime": 1772722507,
+          "level": 56,
+          "dv": 24,
+          "nature": 1,
+          "exp": 15352,
+          "name": "鲁斯王",
+          "ev_hp": 1,
+          "ev_attack": 2,
+          "skills": [
+            11008,
+            20003,
+            10024,
+            20011
+          ],
+          "trait": 1030,
+          "shiny": 1
+        },
+        {
+          "id": 303,
+          "catchTime": 1770864302,
+          "level": 84,
+          "dv": 31,
+          "nature": 17,
+          "exp": 29860,
+          "name": "丽莎布布",
+          "skills": [
+            20009,
+            20007,
+            11007,
+            11006
+          ],
+          "trait": 1018,
+          "shiny": 1
+        },
+        {
+          "id": 125,
+          "catchTime": 1770465610,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "萨格罗斯",
+          "ev_sa": 1,
+          "skills": [
+            10374,
+            20163,
+            10377,
+            10375
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 306,
+          "catchTime": 1772537178,
+          "level": 100,
+          "dv": 21,
+          "nature": 18,
+          "exp": 0,
+          "name": "鲁斯王",
+          "ev_attack": 15,
+          "ev_sa": 2,
+          "skills": [
+            11012,
+            10020,
+            20505,
+            20506
+          ],
+          "trait": 1010,
+          "shiny": 1
+        },
+        {
+          "id": 3512,
+          "catchTime": 1773302247,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "帝皇之御",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            25861,
+            31505,
+            25862,
+            31506
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 110,
+          "catchTime": 1770446730,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "布鲁克克",
+          "skills": [
+            10325,
+            10322,
+            10326,
+            20143
+          ],
+          "trait": 1028,
+          "shiny": 1
+        },
+        {
+          "id": 1000,
+          "catchTime": 1771770553,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "奥尔德",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            21173,
+            21172,
+            21174,
+            12264
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 150,
+          "catchTime": 1773318112,
+          "level": 95,
+          "dv": 5,
+          "nature": 1,
+          "exp": 0,
+          "name": "查克"
+        },
+        {
+          "id": 798,
+          "catchTime": 1773313446,
+          "level": 100,
+          "dv": 31,
+          "nature": 16,
+          "exp": 0,
+          "name": "卡修斯",
+          "skills": [
+            20639,
+            11924,
+            20982,
+            11925
+          ],
+          "trait": 1024
+        },
+        {
+          "id": 309,
+          "catchTime": 1770387825,
+          "level": 90,
+          "dv": 31,
+          "nature": 0,
+          "exp": 503,
+          "name": "魔焰猩猩",
+          "ev_hp": 1,
+          "ev_attack": 3,
+          "ev_defence": 2,
+          "ev_sa": 2,
+          "skills": [
+            11020,
+            11022,
+            11023,
+            11021
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 300,
+          "catchTime": 1770292927,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "谱尼",
+          "ev_sa": 255,
+          "ev_sp": 255,
+          "skills": [
+            20499,
+            10998,
+            11000,
+            20500
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 5003,
+          "catchTime": 1773068116,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "机械塔克林",
+          "skills": [
+            20338,
+            10762,
+            20339,
+            10760
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 429,
+          "catchTime": 1770524313,
+          "level": 100,
+          "dv": 31,
+          "nature": 12,
+          "exp": 0,
+          "name": "艾克里桑",
+          "trait": 1023,
+          "shiny": 1
+        },
+        {
+          "id": 256,
+          "catchTime": 1770446526,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "嘟咕噜王",
+          "skills": [
+            10698,
+            10699,
+            20304,
+            10697
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 140,
+          "catchTime": 1772255024,
+          "level": 96,
+          "dv": 3,
+          "nature": 21,
+          "exp": 28311,
+          "name": "艾迪希洛",
+          "ev_attack": 3,
+          "ev_sa": 8,
+          "skills": [
+            10436,
+            20185,
+            20099,
+            20187
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 421,
+          "catchTime": 1772444970,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "厄尔塞拉",
+          "ev_hp": 255,
+          "ev_sd": 255,
+          "skills": [
+            10632,
+            20048,
+            20564,
+            11140
+          ],
+          "trait": 1024,
+          "shiny": 1
+        },
+        {
+          "id": 223,
+          "catchTime": 1773399936,
+          "level": 1,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "德塔",
+          "shiny": 1
+        },
+        {
+          "id": 475,
+          "catchTime": 1773399354,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "该隐",
+          "ev_attack": 1,
+          "skills": [
+            20499,
+            11241,
+            20593,
+            20484
+          ]
+        },
+        {
+          "id": 50,
+          "catchTime": 1770548729,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "阿克希亚",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            10208,
+            10207,
+            10209,
+            10210
+          ],
+          "trait": 1022,
+          "shiny": 1
+        },
+        {
+          "id": 1657,
+          "catchTime": 1773410774,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "勇气号",
+          "ev_hp": 255,
+          "ev_attack": 120,
+          "ev_sp": 135,
+          "skills": [
+            22089,
+            13924,
+            22090,
+            13926
+          ],
+          "trait": 1011,
+          "shiny": 1
+        },
+        {
+          "id": 300,
+          "catchTime": 1770292927,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "谱尼",
+          "ev_sa": 255,
+          "ev_sp": 255,
+          "skills": [
+            20499,
+            11274,
+            20606,
+            20608
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 865,
+          "catchTime": 1770437667,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "托鲁克",
+          "ev_sa": 1,
+          "skills": [
+            21069,
+            10060,
+            21070,
+            12079
+          ],
+          "trait": 1009,
+          "shiny": 1
+        },
+        {
+          "id": 303,
+          "catchTime": 1773311642,
+          "level": 100,
+          "dv": 31,
+          "nature": 16,
+          "exp": 0,
+          "name": "丽莎布布",
+          "ev_hp": 255,
+          "ev_sd": 255,
+          "skills": [
+            11071,
+            20007,
+            20504,
+            11007
+          ],
+          "trait": 1024
+        },
+        {
+          "id": 3383,
+          "catchTime": 1773453940,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "无限自由",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            25516,
+            30819,
+            25517,
+            30820
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 3434,
+          "catchTime": 1773068190,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "天父·奥丁",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            25657,
+            31099,
+            23782,
+            31100
+          ],
+          "currentHp": 506,
+          "skillPp": [
+            5,
+            5,
+            10,
+            5
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 166,
+          "catchTime": 1771227027,
+          "level": 100,
+          "dv": 13,
+          "nature": 6,
+          "exp": 0,
+          "name": "闪光波克尔",
+          "ev_sp": 6,
+          "skills": [
+            20209,
+            10036,
+            20210,
+            10486
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 504,
+          "catchTime": 1773458019,
+          "level": 1,
+          "dv": 27,
+          "nature": 12,
+          "exp": 0,
+          "name": "菲尼克斯",
+          "shiny": 1
+        },
+        {
+          "id": 300,
+          "catchTime": 1770292927,
+          "level": 100,
+          "dv": 31,
+          "nature": 4,
+          "exp": 0,
+          "name": "谱尼",
+          "ev_sa": 255,
+          "ev_sp": 255,
+          "skills": [
+            20606,
+            11274,
+            20607,
+            20608
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 588,
+          "catchTime": 1773318146,
+          "level": 1,
+          "dv": 12,
+          "nature": 4,
+          "exp": 0,
+          "name": "瑞克",
+          "shiny": 1
+        },
+        {
+          "id": 601,
+          "catchTime": 1773411016,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "火刃",
+          "ev_attack": 255,
+          "ev_sp": 255,
+          "shiny": 1
+        },
+        {
+          "id": 328,
+          "catchTime": 1773476542,
+          "level": 1,
+          "dv": 31,
+          "nature": 12,
+          "exp": 0,
+          "name": "辛克",
+          "trait": 1019,
+          "shiny": 1
+        },
+        {
+          "id": 70,
+          "catchTime": 1771770923,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "雷伊",
+          "ev_sp": 4,
+          "shiny": 1
+        },
+        {
+          "id": 5010,
+          "catchTime": 1773068700,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "恐惧的化身",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            11660,
+            11661,
+            20819,
+            11662
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 92,
+          "catchTime": 1772204721,
+          "level": 65,
+          "dv": 18,
+          "nature": 1,
+          "exp": 0,
+          "name": "蝠迪",
+          "skills": [
+            10001,
+            10129,
+            20004,
+            10284
+          ]
+        },
+        {
+          "id": 125,
+          "catchTime": 1770465610,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "萨格罗斯",
+          "ev_hp": 255,
+          "ev_sd": 255,
+          "skills": [
+            10374,
+            20163,
+            10378,
+            10375
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 498,
+          "catchTime": 1773327334,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "阿葵丽亚",
+          "skills": [
+            11294,
+            20625,
+            11295,
+            20626
+          ]
+        },
+        {
+          "id": 124,
+          "catchTime": 1773143909,
+          "level": 100,
+          "dv": 31,
+          "nature": 6,
+          "exp": 0,
+          "name": "英卡洛斯",
+          "ev_attack": 255,
+          "ev_sp": 255,
+          "skills": [
+            10364,
+            10369,
+            20160,
+            10368
+          ],
+          "trait": 1024
+        },
+        {
+          "id": 261,
+          "catchTime": 1771593679,
+          "level": 100,
+          "dv": 25,
+          "nature": 6,
+          "exp": 0,
+          "name": "盖亚",
+          "ev_hp": 255,
+          "ev_sp": 255,
+          "skills": [
+            10714,
+            10712,
+            20312,
+            10715
+          ],
+          "trait": 1027,
+          "shiny": 1
+        },
+        {
+          "id": 366,
+          "catchTime": 1773664778,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "呆呆蛹"
+        },
+        {
+          "id": 269,
+          "catchTime": 1773664785,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "眼球"
+        },
+        {
+          "id": 123,
+          "catchTime": 1773664286,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "希路达"
+        },
+        {
+          "id": 599,
+          "catchTime": 1773323032,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "吉米丽娅",
+          "ev_attack": 1,
+          "skills": [
+            20749,
+            20751,
+            11504,
+            11508
+          ],
+          "shiny": 1
+        },
+        {
+          "id": 356,
+          "catchTime": 1773322983,
+          "level": 100,
+          "dv": 31,
+          "nature": 0,
+          "exp": 0,
+          "name": "斯加尔卡",
+          "ev_attack": 1,
+          "skills": [
+            20398,
+            10877,
+            20394,
+            10876
+          ]
+        }
+      ],
+      "friends": [],
+      "expPool": 16341995,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1773821901,
+      "roomPets": [
+        1772206784,
+        1773318146,
+        1772626095,
+        1771768546,
+        1772363272
+      ],
+      "defeatedSptBossIds": [
+        34,
+        69,
+        132,
+        166,
+        88,
+        187,
+        42,
+        70,
+        113,
+        261,
+        47,
+        300,
+        50,
+        30004,
+        30005,
+        222,
+        195,
+        177,
+        356,
+        501,
+        264,
+        391,
+        274,
+        421,
+        1000,
+        502,
+        538,
+        490,
+        617,
+        413,
+        30001,
+        183,
+        192,
+        30002,
+        224,
+        30003,
+        30006,
+        1337,
+        589
+      ],
+      "defeatedXuanWuGuardianMask": 63,
+      "miningCount": {
+        "2051": 1
+      },
+      "miningDate": 20529,
+      "followPetCatchTime": 1772980070,
+      "hatchingPetID": 1000,
+      "hatchingStartTime": 1773546947,
+      "soulBeads": [
+        {
+          "obtainTime": 1772540496,
+          "itemId": 1000002,
+          "status": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "resultPetId": 304,
+          "dv": 26,
+          "nature": 23,
+          "trait": 1018,
+          "shiny": 1
+        },
+        {
+          "obtainTime": 1772540609,
+          "itemId": 1000002,
+          "status": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "resultPetId": 304,
+          "dv": 31,
+          "nature": 23,
+          "trait": 1018
+        }
+      ],
+      "gaiyaEffects": [
+        1
+      ],
+      "gaiyaDefaultEffect": 1,
+      "leiyiTrain": {
+        "date": 20529,
+        "today": [
+          3,
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        "current": [
+          3,
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        "total": [
+          60,
+          20,
+          20,
+          20,
+          10,
+          20
+        ]
+      },
+      "bufferRecord": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    },
+    "100000006": {
+      "nick": "666",
+      "color": 65280,
+      "coins": 2000,
+      "gold": 9999,
+      "energy": 100,
+      "pets": [],
+      "items": {
+        "300001": {
+          "count": 5,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 3,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [],
+      "tasks": {
+        "85": {
+          "status": "1"
+        }
+      },
+      "petBook": {},
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 0,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 0,
+        "vipLevel": 0,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 0,
+        "freshManBonus": 0,
+        "superEnergy": 0,
+        "superLevel": 0,
+        "superStage": 0,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1769949943,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": false
+      },
+      "mapId": 1,
+      "posX": 300,
+      "posY": 270,
+      "fitments": [],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 0,
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 0,
+      "maxStage": 0,
+      "curFreshStage": 0,
+      "maxFreshStage": 0,
+      "freshTowerRewardClaimed": null,
+      "braveTowerRewardClaimed": null,
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [],
+      "friends": [],
+      "expPool": 0,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1769949943,
+      "bufferRecord": null
+    },
+    "100000007": {
+      "nick": "100000007",
+      "color": 0,
+      "coins": 2000,
+      "gold": 9999,
+      "energy": 100,
+      "pets": [],
+      "items": {
+        "300001": {
+          "count": 5,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 3,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [],
+      "tasks": {},
+      "petBook": {},
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 0,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 0,
+        "vipLevel": 0,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 0,
+        "freshManBonus": 0,
+        "superEnergy": 0,
+        "superLevel": 0,
+        "superStage": 0,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1769951888,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": false
+      },
+      "mapId": 1,
+      "posX": 300,
+      "posY": 270,
+      "fitments": [],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 0,
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 0,
+      "maxStage": 0,
+      "curFreshStage": 0,
+      "maxFreshStage": 0,
+      "freshTowerRewardClaimed": null,
+      "braveTowerRewardClaimed": null,
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [],
+      "friends": [],
+      "expPool": 99999,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1769951888,
+      "bufferRecord": null
+    },
+    "100000008": {
+      "nick": "666",
+      "color": 65280,
+      "coins": 52000,
+      "gold": 9999,
+      "energy": 100,
+      "pets": [
+        {
+          "id": 429,
+          "catchTime": 1770524982,
+          "level": 100,
+          "dv": 31,
+          "nature": 12,
+          "exp": 0,
+          "name": "艾克里桑",
+          "trait": 1023
+        },
+        {
+          "id": 261,
+          "catchTime": 1770524994,
+          "level": 100,
+          "dv": 31,
+          "nature": 2,
+          "exp": 0,
+          "name": "盖亚",
+          "trait": 1023
+        },
+        {
+          "id": 4,
+          "catchTime": 1768449796,
+          "level": 5,
+          "dv": 31,
+          "nature": 13,
+          "exp": 0,
+          "name": "伊优"
+        },
+        {
+          "id": 198,
+          "catchTime": 1770525257,
+          "level": 15,
+          "dv": 2,
+          "nature": 21,
+          "exp": 0,
+          "name": "小鳍鱼"
+        }
+      ],
+      "items": {
+        "100027": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "100028": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "300001": {
+          "count": 10,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 6,
+          "expireTime": 360000
+        },
+        "300025": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "300035": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "300650": {
+          "count": 3,
+          "expireTime": 360000
+        },
+        "400051": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "400103": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "500001": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "500502": {
+          "count": 1,
+          "expireTime": 360000
+        },
+        "500503": {
+          "count": 1,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [],
+      "tasks": {
+        "302": {
+          "status": "3",
+          "completeTime": 1771763797
+        },
+        "85": {
+          "status": "3"
+        },
+        "86": {
+          "status": "3"
+        },
+        "87": {
+          "status": "3"
+        },
+        "88": {
+          "status": "3"
+        }
+      },
+      "petBook": {},
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 0,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 1,
+        "vipLevel": 1,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 1773117211,
+        "freshManBonus": 0,
+        "superEnergy": 0,
+        "superLevel": 1,
+        "superStage": 1,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1770524973,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": false
+      },
+      "mapId": 1,
+      "posX": 850,
+      "posY": 385,
+      "fitments": [],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 0,
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 0,
+      "maxStage": 0,
+      "curFreshStage": 0,
+      "maxFreshStage": 0,
+      "freshTowerRewardClaimed": null,
+      "braveTowerRewardClaimed": null,
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [],
+      "friends": [],
+      "expPool": 0,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1770525558,
+      "defeatedSptBossIds": [
+        70,
+        34
+      ],
+      "bufferRecord": null
+    },
+    "10047": {
+      "nick": "10047",
+      "color": 6737151,
+      "coins": 2000,
+      "gold": 9999,
+      "energy": 100,
+      "pets": [],
+      "items": {
+        "300001": {
+          "count": 5,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 3,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [],
+      "tasks": {},
+      "petBook": {},
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 0,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 0,
+        "vipLevel": 0,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 0,
+        "freshManBonus": 0,
+        "superEnergy": 0,
+        "superLevel": 0,
+        "superStage": 0,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1772459090,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": false
+      },
+      "mapId": 1,
+      "posX": 300,
+      "posY": 270,
+      "fitments": [],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 0,
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 0,
+      "maxStage": 0,
+      "curFreshStage": 0,
+      "maxFreshStage": 0,
+      "freshTowerRewardClaimed": null,
+      "braveTowerRewardClaimed": null,
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [],
+      "friends": [],
+      "expPool": 0,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1772459090,
+      "bufferRecord": null
+    },
+    "10048": {
+      "nick": "10048",
+      "color": 6737151,
+      "coins": 2000,
+      "gold": 9999,
+      "energy": 100,
+      "pets": [],
+      "items": {
+        "300001": {
+          "count": 5,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 3,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [],
+      "tasks": {},
+      "petBook": {},
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 0,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 0,
+        "vipLevel": 0,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 0,
+        "freshManBonus": 0,
+        "superEnergy": 0,
+        "superLevel": 0,
+        "superStage": 0,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1772459052,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": false
+      },
+      "mapId": 1,
+      "posX": 300,
+      "posY": 270,
+      "fitments": [],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 0,
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 0,
+      "maxStage": 0,
+      "curFreshStage": 0,
+      "maxFreshStage": 0,
+      "freshTowerRewardClaimed": null,
+      "braveTowerRewardClaimed": null,
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [],
+      "friends": [],
+      "expPool": 0,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1772459052,
+      "bufferRecord": null
+    },
+    "10049": {
+      "nick": "10049",
+      "color": 6737151,
+      "coins": 2000,
+      "gold": 9999,
+      "energy": 100,
+      "pets": [],
+      "items": {
+        "300001": {
+          "count": 5,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 3,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [],
+      "tasks": {},
+      "petBook": {},
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 0,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 0,
+        "vipLevel": 0,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 0,
+        "freshManBonus": 0,
+        "superEnergy": 0,
+        "superLevel": 0,
+        "superStage": 0,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1772459063,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": false
+      },
+      "mapId": 1,
+      "posX": 300,
+      "posY": 270,
+      "fitments": [],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 0,
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 0,
+      "maxStage": 0,
+      "curFreshStage": 0,
+      "maxFreshStage": 0,
+      "freshTowerRewardClaimed": null,
+      "braveTowerRewardClaimed": null,
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [],
+      "friends": [],
+      "expPool": 0,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1772459063,
+      "bufferRecord": null
+    },
+    "539959368": {
+      "nick": "539959368",
+      "color": 6737151,
+      "coins": 2000,
+      "gold": 9999,
+      "energy": 100,
+      "pets": [],
+      "items": {
+        "300001": {
+          "count": 5,
+          "expireTime": 360000
+        },
+        "300011": {
+          "count": 3,
+          "expireTime": 360000
+        }
+      },
+      "clothes": [],
+      "tasks": {},
+      "petBook": {},
+      "nono": {
+        "hasNono": 1,
+        "flag": 1,
+        "state": 0,
+        "nick": "NoNo",
+        "color": 16777215,
+        "superNono": 0,
+        "vipLevel": 0,
+        "vipStage": 0,
+        "vipValue": 0,
+        "autoCharge": 0,
+        "vipEndTime": 0,
+        "freshManBonus": 0,
+        "superEnergy": 0,
+        "superLevel": 0,
+        "superStage": 0,
+        "power": 10000,
+        "mate": 10000,
+        "iq": 0,
+        "ai": 0,
+        "hp": 10000,
+        "maxHp": 10000,
+        "energy": 100,
+        "birth": 1769769724,
+        "chargeTime": 500,
+        "expire": 0,
+        "chip": 0,
+        "grow": 0,
+        "isFollowing": false
+      },
+      "mapId": 1,
+      "posX": 300,
+      "posY": 270,
+      "fitments": [],
+      "allFitments": [],
+      "texture": 1,
+      "dsFlag": 0,
+      "badge": 0,
+      "curTitle": 0,
+      "fightBadge": 0,
+      "timeToday": 0,
+      "timeLimit": 86400,
+      "loginCnt": 1,
+      "inviter": 0,
+      "newInviteeCnt": 0,
+      "teacherID": 0,
+      "studentID": 0,
+      "graduationCount": 0,
+      "maxPuniLv": 100,
+      "petMaxLev": 100,
+      "petAllNum": 0,
+      "monKingWin": 0,
+      "monBtlMedal": 0,
+      "messWin": 0,
+      "curStage": 0,
+      "maxStage": 0,
+      "curFreshStage": 0,
+      "maxFreshStage": 0,
+      "freshTowerRewardClaimed": null,
+      "braveTowerRewardClaimed": null,
+      "maxArenaWins": 0,
+      "twoTimes": 0,
+      "threeTimes": 0,
+      "autoFight": 0,
+      "autoFightTimes": 0,
+      "energyTimes": 0,
+      "learnTimes": 0,
+      "achievements": {
+        "total": 0,
+        "rank": 0,
+        "list": []
+      },
+      "storagePets": [],
+      "friends": [],
+      "expPool": 0,
+      "blacklist": [],
+      "currentServer": 0,
+      "lastOnline": 1769769724,
+      "bufferRecord": null
+    }
+  }
+}

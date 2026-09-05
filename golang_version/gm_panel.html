@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赛尔号 GM 管理面板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab:hover {
+            color: #667eea;
+        }
+        
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .user-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .user-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .user-card:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .user-info h3 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .user-info p {
+            color: #666;
+            font-size: 14px;
+            margin: 4px 0;
+        }
+        
+        .user-stats {
+            display: flex;
+            gap: 20px;
+            margin-right: 20px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .blacklist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 赛尔号 GM 管理面板</h1>
+            <p>Game Master Control Panel</p>
+        </div>
+        
+        <div class="content">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('users')">用户管理</button>
+                <button class="tab" onclick="switchTab('items')">物品管理</button>
+                <button class="tab" onclick="switchTab('pets')">精灵管理</button>
+                <button class="tab" onclick="switchTab('gacha')">扭蛋机</button>
+                <button class="tab" onclick="switchTab('fusion')">元神赋形</button>
+            </div>
+            
+            <div id="alert-container"></div>
+            
+            <!-- 用户管理标签页 -->
+            <div id="users-tab" class="tab-content active">
+                <div id="user-list" class="user-list">
+                    <div class="loading">加载中...</div>
+                </div>
+            </div>
+            
+            <!-- 物品管理标签页 -->
+            <div id="items-tab" class="tab-content">
+                <div style="margin-bottom: 20px; display: flex; gap: 10px; align-items: center;">
+                    <button class="btn btn-success" onclick="showAddItemModal()">添加物品</button>
+                    <button class="btn btn-primary" onclick="loadUserItems()">刷新物品列表</button>
+                </div>
+                <p id="items-hint" style="margin-top: 10px; color: #666;">请先在用户管理中选择一个用户（点击「编辑」）</p>
+                <div id="items-list" class="user-list" style="margin-top: 15px;"></div>
+            </div>
+            
+            <!-- 精灵管理标签页 -->
+            <div id="pets-tab" class="tab-content">
+                <button class="btn btn-success" onclick="showAddPetModal()">添加精灵</button>
+                <p style="margin-top: 20px; color: #666;">请先在用户管理中选择一个用户</p>
+            </div>
+            
+            <!-- 扭蛋机标签页 -->
+            <div id="gacha-tab" class="tab-content">
+                <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-success" onclick="showAddGachaRewardModal()">添加奖励</button>
+                    <button class="btn btn-primary" onclick="loadGachaList()">刷新列表</button>
+                    <button class="btn btn-primary" onclick="saveGachaConfig()">保存到文件</button>
+                </div>
+                <p style="color: #666; margin-bottom: 15px;">当前扭蛋机奖励池（权重越大抽中概率越高，金豆道具建议权重低于赛尔豆道具）：</p>
+                <div id="gacha-list" class="user-list">
+                    <div class="loading">加载中...</div>
+                </div>
+            </div>
+
+            <!-- 元神赋形标签页 -->
+            <div id="fusion-tab" class="tab-content">
+                <h2 style="margin-bottom: 15px;">元神赋形配置</h2>
+                <p style="margin-bottom: 10px; color:#666;">
+                    这里只在内存中调整 <strong>融合公式</strong> 和 <strong>赋形时间</strong>，用于测试和平衡；重启进程后会恢复为代码中的默认值。
+                </p>
+                <div class="form-group">
+                    <label for="fusion-transform-hours">元神赋形时间（小时，所有颜色统一）</label>
+                    <input type="number" id="fusion-transform-hours" min="0.01" step="0.01" value="0.02">
+                    <div style="margin-top:8px;">
+                        <span style="color:#999;margin-right:8px;">测试用快捷：</span>
+                        <button type="button" class="btn btn-secondary" onclick="setFusionTransformPreset(1/60)">1 分钟</button>
+                        <button type="button" class="btn btn-secondary" onclick="setFusionTransformPreset(5/60)">5 分钟</button>
+                        <button type="button" class="btn btn-secondary" onclick="setFusionTransformPreset(1)">1 小时</button>
+                        <button type="button" class="btn btn-primary" onclick="saveFusionTransformOnly()" style="margin-left:12px;">仅保存赋形时间</button>
+                    </div>
+                    <small style="display:block;margin-top:4px;color:#999;">
+                        保存时会自动转换为秒：秒 = 小时 × 3600。改完时间后点「仅保存赋形时间」即可生效，无需动下面的公式。
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="fusion-formulas-json">融合公式列表（JSON 数组）</label>
+                    <textarea id="fusion-formulas-json" rows="10" style="width:100%;font-family:monospace;font-size:12px;"></textarea>
+                    <small style="display:block;margin-top:4px;color:#999;">
+                        每条格式示例：{"mainId":3,"subId":27,"beadItemID":1000001,"resultID":303}
+                        ，分别表示 主精灵ID / 副精灵ID / 元神珠道具ID / 融合精灵ID。
+                    </small>
+                </div>
+                <button class="btn btn-primary" onclick="saveFusionConfig()">保存配置（立即生效，重启后失效）</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 编辑用户模态框 -->
+    <div id="edit-user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>编辑用户信息</h2>
+            </div>
+            <div class="form-group">
+                <label>用户ID</label>
+                <input type="text" id="edit-userId" readonly>
+            </div>
+            <div class="form-group">
+                <label>昵称</label>
+                <input type="text" id="edit-nickname">
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                <input type="text" id="edit-password" placeholder="留空不修改">
+            </div>
+            <div class="form-group">
+                <label>金币</label>
+                <input type="number" id="edit-coins">
+            </div>
+            <div class="form-group">
+                <label>金豆</label>
+                <input type="number" id="edit-gold">
+            </div>
+            <div class="form-group">
+                <label>体力</label>
+                <input type="number" id="edit-energy">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="saveUserEdit()">保存</button>
+                <button class="btn" onclick="closeModal('edit-user-modal')">取消</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加物品模态框 -->
+    <div id="add-item-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>添加物品</h2>
+            </div>
+            <div class="form-group">
+                <label>用户ID</label>
+                <input type="text" id="item-userId" readonly>
+            </div>
+            <div class="form-group">
+                <label>物品ID</label>
+                <input type="number" id="item-itemId" placeholder="例如: 300001">
+            </div>
+            <div class="form-group">
+                <label>数量</label>
+                <input type="number" id="item-count" value="1" min="1">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-success" onclick="addItem()">添加</button>
+                <button class="btn" onclick="closeModal('add-item-modal')">取消</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加精灵模态框 -->
+    <div id="add-pet-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>添加精灵</h2>
+            </div>
+            <div class="form-group">
+                <label>用户ID</label>
+                <input type="text" id="pet-userId" readonly>
+            </div>
+            <div class="form-group">
+                <label>精灵ID</label>
+                <input type="number" id="pet-petId" placeholder="例如: 166 (闪光波克尔)">
+            </div>
+            <div class="form-group">
+                <label>等级</label>
+                <input type="number" id="pet-level" value="1" min="1" max="100">
+            </div>
+            <div class="form-group">
+                <label>初始性格（可选，0-24）</label>
+                <select class="form-select" id="add-pet-nature">
+                    <option value="">默认(0-孤独)</option>
+                    <option value="0">0 - 孤独 - 攻击↑ 防御↓</option>
+                    <option value="1">1 - 勇敢 - 攻击↑ 速度↓</option>
+                    <option value="2">2 - 固执 - 攻击↑ 特攻↓</option>
+                    <option value="3">3 - 调皮 - 攻击↑ 特防↓</option>
+                    <option value="4">4 - 胆小 - 速度↑ 攻击↓</option>
+                    <option value="5">5 - 急躁 - 速度↑ 防御↓</option>
+                    <option value="6">6 - 开朗 - 速度↑ 特攻↓</option>
+                    <option value="7">7 - 天真 - 速度↑ 特防↓</option>
+                    <option value="8">8 - 大胆 - 防御↑ 攻击↓</option>
+                    <option value="9">9 - 悠闲 - 防御↑ 速度↓</option>
+                    <option value="10">10 - 顽皮 - 防御↑ 特攻↓</option>
+                    <option value="11">11 - 无虑 - 防御↑ 特防↓</option>
+                    <option value="12">12 - 保守 - 特攻↑ 攻击↓</option>
+                    <option value="13">13 - 稳重 - 特攻↑ 防御↓</option>
+                    <option value="14">14 - 冷静 - 特攻↑ 速度↓</option>
+                    <option value="15">15 - 马虎 - 特攻↑ 特防↓</option>
+                    <option value="16">16 - 沉着 - 特防↑ 攻击↓</option>
+                    <option value="17">17 - 温顺 - 特防↑ 防御↓</option>
+                    <option value="18">18 - 狂妄 - 特防↑ 速度↓</option>
+                    <option value="19">19 - 慎重 - 特防↑ 特攻↓</option>
+                    <option value="20">20 - 害羞 - 平衡</option>
+                    <option value="21">21 - 浮躁 - 平衡</option>
+                    <option value="22">22 - 坦率 - 平衡</option>
+                    <option value="23">23 - 实干 - 平衡</option>
+                    <option value="24">24 - 认真 - 平衡</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label>特性ID（可选，NewSeIdx，1006-1045）</label>
+                <input type="number" id="pet-trait" placeholder="留空=无特性，填写具体ID则指定该特性">
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="pet-trait-random">
+                    为该精灵随机分配一个特性
+                </label>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label>学习力（可选，单项0-255，总和≤510）</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div><label class="small">体力</label><input type="number" id="pet-ev-hp" min="0" max="255" value="0" style="width:100%" oninput="updatePetEvSum()"></div>
+                    <div><label class="small">攻击</label><input type="number" id="pet-ev-atk" min="0" max="255" value="0" style="width:100%" oninput="updatePetEvSum()"></div>
+                    <div><label class="small">防御</label><input type="number" id="pet-ev-def" min="0" max="255" value="0" style="width:100%" oninput="updatePetEvSum()"></div>
+                    <div><label class="small">特攻</label><input type="number" id="pet-ev-sa" min="0" max="255" value="0" style="width:100%" oninput="updatePetEvSum()"></div>
+                    <div><label class="small">特防</label><input type="number" id="pet-ev-sd" min="0" max="255" value="0" style="width:100%" oninput="updatePetEvSum()"></div>
+                    <div><label class="small">速度</label><input type="number" id="pet-ev-sp" min="0" max="255" value="0" style="width:100%" oninput="updatePetEvSum()"></div>
+                </div>
+                <div class="small" style="margin-top:6px"><strong>总学习力：</strong><span id="pet-ev-sum">0</span> / 510</div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-success" onclick="addPet()">添加</button>
+                <button class="btn" onclick="closeModal('add-pet-modal')">取消</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 黑名单管理模态框 -->
+    <div id="blacklist-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>黑名单管理</h2>
+            </div>
+            <div id="blacklist-content">
+                <div class="loading">加载中...</div>
+            </div>
+            <div class="form-group">
+                <label>添加到黑名单</label>
+                <input type="number" id="blacklist-userId" placeholder="输入要屏蔽的用户ID">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-danger" onclick="addToBlacklist()">添加</button>
+                <button class="btn" onclick="closeModal('blacklist-modal')">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 扭蛋机：添加奖励模态框 -->
+    <div id="gacha-add-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>添加扭蛋机奖励</h2>
+            </div>
+            <div class="form-group">
+                <label>道具ID</label>
+                <input type="number" id="gacha-add-itemId" placeholder="例如: 300001（任意道具ID均可）">
+            </div>
+            <div class="form-group">
+                <label>权重（越大抽中概率越高，金豆道具建议 1，赛尔豆建议 5）</label>
+                <input type="number" id="gacha-add-weight" value="5" min="1">
+            </div>
+            <div class="form-group">
+                <label>中文名称（可选，留空则用系统名称）</label>
+                <input type="text" id="gacha-add-name" placeholder="留空自动显示道具名">
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="gacha-add-isGold"> 金豆商城道具（概率会较低）</label>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-success" onclick="addGachaReward()">添加</button>
+                <button class="btn" onclick="closeModal('gacha-add-modal')">取消</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 扭蛋机：修改奖励模态框 -->
+    <div id="gacha-edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>修改扭蛋机奖励</h2>
+            </div>
+            <input type="hidden" id="gacha-edit-index">
+            <div class="form-group">
+                <label>道具ID</label>
+                <input type="number" id="gacha-edit-itemId">
+            </div>
+            <div class="form-group">
+                <label>权重</label>
+                <input type="number" id="gacha-edit-weight" min="1">
+            </div>
+            <div class="form-group">
+                <label>中文名称</label>
+                <input type="text" id="gacha-edit-name">
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="gacha-edit-isGold"> 金豆商城道具</label>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="saveGachaRewardEdit()">保存</button>
+                <button class="btn" onclick="closeModal('gacha-edit-modal')">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080';
+        let currentUserId = null;
+        let usersData = [];
+        let gachaListData = [];
+        let fusionConfigCache = null;
+        
+        // 切换标签页
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+            if (tabName === 'gacha') loadGachaList();
+            if (tabName === 'items') loadUserItems();
+            if (tabName === 'fusion') loadFusionConfig();
+        }
+        
+        // 显示提示信息
+        function showAlert(message, type = 'success') {
+            const alertContainer = document.getElementById('alert-container');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            alertContainer.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+        }
+        
+        // 加载用户列表
+        async function loadUsers() {
+            try {
+                const response = await fetch(`${API_BASE}/gm/users`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    usersData = data.data;
+                    renderUsers(data.data);
+                }
+            } catch (error) {
+                console.error('加载用户列表失败:', error);
+                showAlert('加载用户列表失败', 'error');
+            }
+        }
+
+        // 加载元神赋形配置
+        async function loadFusionConfig() {
+            try {
+                const response = await fetch(`${API_BASE}/gm/fusion/config`);
+                const data = await response.json();
+                if (!data.success) {
+                    showAlert(data.message || '加载融合配置失败', 'error');
+                    return;
+                }
+                fusionConfigCache = data.data || {};
+                const seconds = fusionConfigCache.transformSeconds || 60;
+                const hours = seconds / 3600.0;
+                const hoursInput = document.getElementById('fusion-transform-hours');
+                if (hoursInput) {
+                    hoursInput.value = hours.toFixed(2);
+                }
+                const formulasTextarea = document.getElementById('fusion-formulas-json');
+                if (formulasTextarea) {
+                    try {
+                        formulasTextarea.value = JSON.stringify(fusionConfigCache.formulas || [], null, 2);
+                    } catch (e) {
+                        formulasTextarea.value = '';
+                    }
+                }
+            } catch (error) {
+                console.error('加载融合配置失败:', error);
+                showAlert('加载融合配置失败', 'error');
+            }
+        }
+
+        // 快捷设置赋形时间（仅改输入框，需再点「仅保存赋形时间」生效）
+        function setFusionTransformPreset(hours) {
+            const el = document.getElementById('fusion-transform-hours');
+            if (el) el.value = hours <= 1/60 ? (1/60).toFixed(4) : hours.toFixed(2);
+        }
+
+        // 仅保存赋形时间（不提交公式，方便测试时快速改时间）
+        async function saveFusionTransformOnly() {
+            const hoursInput = document.getElementById('fusion-transform-hours');
+            let hours = parseFloat(hoursInput && hoursInput.value ? hoursInput.value : 0);
+            if (isNaN(hours) || hours <= 0) {
+                showAlert('请先填写或选择赋形时间（小时）', 'error');
+                return;
+            }
+            const seconds = Math.max(1, Math.round(hours * 3600));
+            try {
+                const response = await fetch(`${API_BASE}/gm/fusion/config`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ transformSeconds: seconds })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    showAlert('赋形时间已更新：' + seconds + ' 秒（约 ' + (seconds/60).toFixed(1) + ' 分钟）');
+                } else {
+                    showAlert(data.message || '保存赋形时间失败', 'error');
+                }
+            } catch (error) {
+                console.error('保存赋形时间失败:', error);
+                showAlert('保存赋形时间失败', 'error');
+            }
+        }
+
+        // 保存元神赋形配置
+        async function saveFusionConfig() {
+            let hours = parseFloat(document.getElementById('fusion-transform-hours').value);
+            if (isNaN(hours) || hours <= 0) {
+                showAlert('请填写合法的赋形时间（小时）', 'error');
+                return;
+            }
+            const seconds = Math.max(1, Math.round(hours * 3600));
+            let formulas = [];
+            const formulasText = document.getElementById('fusion-formulas-json').value.trim();
+            if (formulasText) {
+                try {
+                    formulas = JSON.parse(formulasText);
+                } catch (e) {
+                    showAlert('融合公式 JSON 解析失败', 'error');
+                    return;
+                }
+            }
+            try {
+                const response = await fetch(`${API_BASE}/gm/fusion/config`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        transformSeconds: seconds,
+                        formulas: formulas
+                    })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    showAlert('保存融合配置成功');
+                    loadFusionConfig();
+                } else {
+                    showAlert(data.message || '保存融合配置失败', 'error');
+                }
+            } catch (error) {
+                console.error('保存融合配置失败:', error);
+                showAlert('保存融合配置失败', 'error');
+            }
+        }
+        
+        // 渲染用户列表
+        function renderUsers(users) {
+            const userList = document.getElementById('user-list');
+            userList.innerHTML = '';
+            
+            users.forEach(user => {
+                const card = document.createElement('div');
+                card.className = 'user-card';
+                card.innerHTML = `
+                    <div class="user-info">
+                        <h3>${user.nickname || '未命名'} (ID: ${user.userId})</h3>
+                        <p>📧 ${user.email}</p>
+                        <p>🎮 ${user.roleCreated ? '已创建角色' : '未创建角色'}</p>
+                    </div>
+                    <div class="user-stats">
+                        <div class="stat">
+                            <div class="stat-value">${user.coins || 0}</div>
+                            <div class="stat-label">金币</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">${user.gold || 0}</div>
+                            <div class="stat-label">金豆</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">${user.petCount || 0}</div>
+                            <div class="stat-label">精灵</div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" onclick="editUser(${user.userId})">编辑</button>
+                        <button class="btn btn-danger" onclick="manageBlacklist(${user.userId})">黑名单</button>
+                    </div>
+                `;
+                userList.appendChild(card);
+            });
+        }
+        
+        // 加载用户物品列表（物品管理页用）
+        async function loadUserItems() {
+            const itemsList = document.getElementById('items-list');
+            const itemsHint = document.getElementById('items-hint');
+            if (!currentUserId) {
+                itemsHint.textContent = '请先在用户管理中选择一个用户（点击「编辑」）';
+                itemsList.innerHTML = '';
+                return;
+            }
+            itemsHint.textContent = `当前用户 ID: ${currentUserId}`;
+            itemsList.innerHTML = '<div class="loading">加载中...</div>';
+            try {
+                const response = await fetch(`${API_BASE}/gm/user/?userId=${currentUserId}`);
+                const data = await response.json();
+                if (data.success && data.gameData && data.gameData.items) {
+                    const items = data.gameData.items;
+                    const entries = Object.entries(items);
+                    if (entries.length === 0) {
+                        itemsList.innerHTML = '<p style="color: #999;">该用户暂无物品</p>';
+                    } else {
+                        itemsList.innerHTML = entries.map(([idStr, item]) => {
+                            const itemId = parseInt(idStr, 10);
+                            const name = (item.name || '未知道具').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+                            return `<div class="user-card">
+                                <div class="user-info">
+                                    <h3>${name} (ID: ${itemId})</h3>
+                                    <p>数量: ${item.count || 0}</p>
+                                </div>
+                                <div>
+                                    <button class="btn btn-danger" onclick="deleteItem(${itemId})">删除</button>
+                                </div>
+                            </div>`;
+                        }).join('');
+                    }
+                } else {
+                    itemsList.innerHTML = '<p style="color: #999;">该用户暂无物品</p>';
+                }
+            } catch (err) {
+                console.error('加载物品列表失败:', err);
+                itemsList.innerHTML = '<p style="color: #c00;">加载失败</p>';
+            }
+        }
+
+        // 删除物品
+        async function deleteItem(itemId) {
+            if (!currentUserId) {
+                showAlert('请先选择用户', 'error');
+                return;
+            }
+            if (!confirm(`确定删除物品 ID ${itemId} 吗？`)) return;
+            try {
+                const response = await fetch(`${API_BASE}/gm/item/delete`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: currentUserId, itemId })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    showAlert('删除成功');
+                    loadUserItems();
+                } else {
+                    showAlert(data.message || '删除失败', 'error');
+                }
+            } catch (err) {
+                console.error('删除物品失败:', err);
+                showAlert('删除失败', 'error');
+            }
+        }
+
+        // 编辑用户
+        async function editUser(userId) {
+            currentUserId = userId;
+            
+            try {
+                const response = await fetch(`${API_BASE}/gm/user/?userId=${userId}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('edit-userId').value = userId;
+                    document.getElementById('edit-nickname').value = data.user.nickname || '';
+                    document.getElementById('edit-password').value = data.user.password || '';
+                    document.getElementById('edit-password').placeholder = '留空不修改';
+                    document.getElementById('edit-coins').value = data.gameData?.coins || 0;
+                    document.getElementById('edit-gold').value = data.gameData?.gold || 0;
+                    document.getElementById('edit-energy').value = data.gameData?.energy || 100;
+                    
+                    openModal('edit-user-modal');
+                }
+            } catch (error) {
+                console.error('加载用户信息失败:', error);
+                showAlert('加载用户信息失败', 'error');
+            }
+        }
+        
+        // 保存用户编辑
+        async function saveUserEdit() {
+            const userId = parseInt(document.getElementById('edit-userId').value);
+            const nickname = document.getElementById('edit-nickname').value;
+            const password = document.getElementById('edit-password').value.trim();
+            const coins = parseInt(document.getElementById('edit-coins').value);
+            const gold = parseInt(document.getElementById('edit-gold').value);
+            const energy = parseInt(document.getElementById('edit-energy').value);
+            const payload = { userId, nickname, coins, gold, energy };
+            if (password) payload.password = password;
+            try {
+                const response = await fetch(`${API_BASE}/gm/user/update`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showAlert('更新成功');
+                    closeModal('edit-user-modal');
+                    loadUsers();
+                } else {
+                    showAlert(data.message || '更新失败', 'error');
+                }
+            } catch (error) {
+                console.error('更新用户失败:', error);
+                showAlert('更新用户失败', 'error');
+            }
+        }
+        
+        // 显示添加物品模态框
+        function showAddItemModal() {
+            if (!currentUserId) {
+                showAlert('请先选择一个用户', 'error');
+                return;
+            }
+            document.getElementById('item-userId').value = currentUserId;
+            openModal('add-item-modal');
+        }
+        
+        // 添加物品
+        async function addItem() {
+            const userId = parseInt(document.getElementById('item-userId').value);
+            const itemId = parseInt(document.getElementById('item-itemId').value);
+            const count = parseInt(document.getElementById('item-count').value);
+            
+            if (!itemId || !count) {
+                showAlert('请填写完整信息', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE}/gm/item/add`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId, itemId, count })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showAlert('添加物品成功');
+                    closeModal('add-item-modal');
+                    document.getElementById('item-itemId').value = '';
+                    document.getElementById('item-count').value = '1';
+                } else {
+                    showAlert(data.message || '添加失败', 'error');
+                }
+            } catch (error) {
+                console.error('添加物品失败:', error);
+                showAlert('添加物品失败', 'error');
+            }
+        }
+        
+        // 显示添加精灵模态框
+        function showAddPetModal() {
+            if (!currentUserId) {
+                showAlert('请先选择一个用户', 'error');
+                return;
+            }
+            document.getElementById('pet-userId').value = currentUserId;
+            ['pet-ev-hp','pet-ev-atk','pet-ev-def','pet-ev-sa','pet-ev-sd','pet-ev-sp'].forEach(id => { const e = document.getElementById(id); if (e) e.value = 0; });
+            document.getElementById('pet-ev-sum').textContent = '0';
+            openModal('add-pet-modal');
+        }
+        function updatePetEvSum() {
+            const ids = ['pet-ev-hp','pet-ev-atk','pet-ev-def','pet-ev-sa','pet-ev-sd','pet-ev-sp'];
+            let s = 0;
+            ids.forEach(id => { s += Math.min(255, Math.max(0, parseInt(document.getElementById(id).value, 10) || 0)); });
+            const el = document.getElementById('pet-ev-sum');
+            if (el) el.textContent = s;
+        }
+        
+        // 添加精灵
+        async function addPet() {
+            const userId = parseInt(document.getElementById('pet-userId').value);
+            const petId = parseInt(document.getElementById('pet-petId').value);
+            const level = parseInt(document.getElementById('pet-level').value);
+            const traitInput = document.getElementById('pet-trait').value.trim();
+            const traitRandom = document.getElementById('pet-trait-random').checked;
+            const natureSelect = document.getElementById('add-pet-nature');
+            const natureVal = natureSelect ? natureSelect.value.trim() : '';
+            
+            let trait = 0;
+            if (traitRandom) {
+                trait = -1; // 由后端随机分配特性
+            } else if (traitInput !== '') {
+                trait = parseInt(traitInput, 10) || 0;
+            }
+            
+            if (!petId || !level) {
+                showAlert('请填写完整信息', 'error');
+                return;
+            }
+            
+            const evHP = Math.min(255, Math.max(0, parseInt(document.getElementById('pet-ev-hp').value, 10) || 0));
+            const evAtk = Math.min(255, Math.max(0, parseInt(document.getElementById('pet-ev-atk').value, 10) || 0));
+            const evDef = Math.min(255, Math.max(0, parseInt(document.getElementById('pet-ev-def').value, 10) || 0));
+            const evSa = Math.min(255, Math.max(0, parseInt(document.getElementById('pet-ev-sa').value, 10) || 0));
+            const evSd = Math.min(255, Math.max(0, parseInt(document.getElementById('pet-ev-sd').value, 10) || 0));
+            const evSp = Math.min(255, Math.max(0, parseInt(document.getElementById('pet-ev-sp').value, 10) || 0));
+            const evSum = evHP + evAtk + evDef + evSa + evSd + evSp;
+            if (evSum > 510) {
+                showAlert('学习力总和不能超过 510', 'error');
+                return;
+            }
+            const payload = { userId, petId, level, trait, ev_hp: evHP, ev_attack: evAtk, ev_defence: evDef, ev_sa: evSa, ev_sd: evSd, ev_sp: evSp };
+            if (natureVal !== '') {
+                payload.nature = parseInt(natureVal, 10) || 0;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE}/gm/pet/add`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showAlert('添加精灵成功');
+                    closeModal('add-pet-modal');
+                    document.getElementById('pet-petId').value = '';
+                    document.getElementById('pet-level').value = '1';
+                    loadUsers();
+                } else {
+                    showAlert(data.message || '添加失败', 'error');
+                }
+            } catch (error) {
+                console.error('添加精灵失败:', error);
+                showAlert('添加精灵失败', 'error');
+            }
+        }
+        
+        // 管理黑名单
+        async function manageBlacklist(userId) {
+            currentUserId = userId;
+            
+            try {
+                const response = await fetch(`${API_BASE}/gm/user/?userId=${userId}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const blacklistContent = document.getElementById('blacklist-content');
+                    const blacklist = data.gameData?.blacklist || [];
+                    
+                    if (blacklist.length === 0) {
+                        blacklistContent.innerHTML = '<p style="color: #999;">黑名单为空</p>';
+                    } else {
+                        blacklistContent.innerHTML = blacklist.map(entry => `
+                            <div class="blacklist-item">
+                                <span>${entry.nick} (ID: ${entry.userID})</span>
+                                <button class="btn btn-danger" onclick="removeFromBlacklist(${entry.userID})">移除</button>
+                            </div>
+                        `).join('');
+                    }
+                    
+                    openModal('blacklist-modal');
+                }
+            } catch (error) {
+                console.error('加载黑名单失败:', error);
+                showAlert('加载黑名单失败', 'error');
+            }
+        }
+        
+        // 添加到黑名单
+        async function addToBlacklist() {
+            const blockedId = parseInt(document.getElementById('blacklist-userId').value);
+            
+            if (!blockedId) {
+                showAlert('请输入用户ID', 'error');
+                return;
+            }
+            
+            const blockedUser = usersData.find(u => u.userId === blockedId);
+            const blockedNick = blockedUser ? blockedUser.nickname : '未知用户';
+            
+            try {
+                const response = await fetch(`${API_BASE}/gm/blacklist/add`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        userId: currentUserId, 
+                        blockedId,
+                        blockedNick
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showAlert('添加成功');
+                    document.getElementById('blacklist-userId').value = '';
+                    manageBlacklist(currentUserId);
+                } else {
+                    showAlert(data.message || '添加失败', 'error');
+                }
+            } catch (error) {
+                console.error('添加黑名单失败:', error);
+                showAlert('添加黑名单失败', 'error');
+            }
+        }
+        
+        // 从黑名单移除
+        async function removeFromBlacklist(blockedId) {
+            try {
+                const response = await fetch(`${API_BASE}/gm/blacklist/remove`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: currentUserId, blockedId })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showAlert('移除成功');
+                    manageBlacklist(currentUserId);
+                } else {
+                    showAlert(data.message || '移除失败', 'error');
+                }
+            } catch (error) {
+                console.error('移除黑名单失败:', error);
+                showAlert('移除黑名单失败', 'error');
+            }
+        }
+        
+        // 打开模态框
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+        
+        // 关闭模态框
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+        
+        // ==================== 扭蛋机模块 ====================
+        async function loadGachaList() {
+            const el = document.getElementById('gacha-list');
+            el.innerHTML = '<div class="loading">加载中...</div>';
+            try {
+                const response = await fetch(`${API_BASE}/gm/gacha/list`);
+                const data = await response.json();
+                if (data.success && data.data) {
+                    gachaListData = data.data;
+                    if (data.data.length === 0) {
+                        el.innerHTML = '<p style="color: #999;">当前无奖励，点击「添加奖励」添加扭蛋机奖励。</p>';
+                    } else {
+                        el.innerHTML = data.data.map((item) => {
+                            const name = (item.name || '未知道具').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+                            return `<div class="user-card">
+                                <div class="user-info">
+                                    <h3>#${item.index} ${name} (ID: ${item.itemID})</h3>
+                                    <p>权重: ${item.weight} ${item.isGold ? '· 金豆道具' : '· 赛尔豆道具'}</p>
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary" onclick="editGachaRewardByIndex(${item.index})">修改</button>
+                                    <button class="btn btn-danger" onclick="removeGachaReward(${item.index})">删除</button>
+                                </div>
+                            </div>`;
+                        }).join('');
+                    }
+                } else {
+                    el.innerHTML = '<p style="color: #c00;">加载失败</p>';
+                }
+            } catch (err) {
+                console.error('加载扭蛋机列表失败:', err);
+                el.innerHTML = '<p style="color: #c00;">加载失败，请确认服务已启动且端口 8080 可访问</p>';
+            }
+        }
+        
+        function showAddGachaRewardModal() {
+            document.getElementById('gacha-add-itemId').value = '';
+            document.getElementById('gacha-add-weight').value = '5';
+            document.getElementById('gacha-add-name').value = '';
+            document.getElementById('gacha-add-isGold').checked = false;
+            openModal('gacha-add-modal');
+        }
+        
+        async function addGachaReward() {
+            const itemId = parseInt(document.getElementById('gacha-add-itemId').value);
+            const weight = parseInt(document.getElementById('gacha-add-weight').value) || 1;
+            const name = document.getElementById('gacha-add-name').value.trim();
+            const isGold = document.getElementById('gacha-add-isGold').checked;
+            if (!itemId || itemId <= 0) {
+                showAlert('请填写道具ID', 'error');
+                return;
+            }
+            try {
+                const response = await fetch(`${API_BASE}/gm/gacha/add`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ itemID: itemId, weight, name, isGold })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    showAlert('添加成功');
+                    closeModal('gacha-add-modal');
+                    loadGachaList();
+                } else {
+                    showAlert(data.message || '添加失败', 'error');
+                }
+            } catch (err) {
+                console.error('添加扭蛋奖励失败:', err);
+                showAlert('添加失败', 'error');
+            }
+        }
+        
+        function editGachaRewardByIndex(index) {
+            const item = gachaListData.find(r => r.index === index);
+            if (!item) return;
+            document.getElementById('gacha-edit-index').value = index;
+            document.getElementById('gacha-edit-itemId').value = item.itemID;
+            document.getElementById('gacha-edit-weight').value = item.weight;
+            document.getElementById('gacha-edit-name').value = item.name || '';
+            document.getElementById('gacha-edit-isGold').checked = !!item.isGold;
+            openModal('gacha-edit-modal');
+        }
+        
+        async function saveGachaRewardEdit() {
+            const index = parseInt(document.getElementById('gacha-edit-index').value);
+            const itemID = parseInt(document.getElementById('gacha-edit-itemId').value);
+            const weight = parseInt(document.getElementById('gacha-edit-weight').value) || 1;
+            const name = document.getElementById('gacha-edit-name').value.trim();
+            const isGold = document.getElementById('gacha-edit-isGold').checked;
+            try {
+                const response = await fetch(`${API_BASE}/gm/gacha/update`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ index, itemID, weight, name, isGold })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    showAlert('修改成功');
+                    closeModal('gacha-edit-modal');
+                    loadGachaList();
+                } else {
+                    showAlert(data.message || '修改失败', 'error');
+                }
+            } catch (err) {
+                console.error('修改扭蛋奖励失败:', err);
+                showAlert('修改失败', 'error');
+            }
+        }
+        
+        async function removeGachaReward(index) {
+            if (!confirm('确定删除该奖励？')) return;
+            try {
+                const response = await fetch(`${API_BASE}/gm/gacha/remove`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ index })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    showAlert('删除成功');
+                    loadGachaList();
+                } else {
+                    showAlert(data.message || '删除失败', 'error');
+                }
+            } catch (err) {
+                console.error('删除扭蛋奖励失败:', err);
+                showAlert('删除失败', 'error');
+            }
+        }
+        
+        async function saveGachaConfig() {
+            try {
+                const response = await fetch(`${API_BASE}/gm/gacha/save`, { method: 'POST' });
+                const data = await response.json();
+                if (data.success) {
+                    showAlert('已保存到 gacha_rewards.json');
+                } else {
+                    showAlert(data.message || '保存失败', 'error');
+                }
+            } catch (err) {
+                console.error('保存扭蛋配置失败:', err);
+                showAlert('保存失败', 'error');
+            }
+        }
+        
+        // 页面加载时初始化
+        window.onload = function() {
+            loadUsers();
+        };
+    </script>
+</body>
+</html>

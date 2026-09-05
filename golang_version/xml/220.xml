@@ -1,0 +1,293 @@
+<!--
+	map-@id地图的id @difficulty难度(填写数字,如是4星填4)  @level适合等级
+	task-星球上的任务 @taskIDs任务的id(如:50|55) @newTaskIDs需要标红的新任务ID @任务对应的地图ID
+	sprite-星球上的精灵分布
+	minerals-星球上的矿产分布 @IDs矿产的id @对应的矿产的地图id
+	game-星球上的相关游戏 @names游戏名称(如:小游戏|小游戏) @mapIDs对应的游戏的地图
+	nono-
+	newgoods-新品
+	-->
+<map>
+	<map id="1" des="传送舱">
+		<nono names="超能时空通道" />
+	</map>
+	<map id="4" des="船长室">
+		<game names="保护导航仪" />
+	</map>
+	<map id="5" des="实验室">
+		<task taskIDs="#尼布守卫战" />
+	</map>
+	<map id="6" des="动力室">
+		<game names="突围磁风暴" />
+	</map>
+	<map id="7" des="瞭望舱">
+		<game names="舱外回收员" />
+	</map>
+	<map id="103" des="瞭望露台">
+		<newgoods names="#强效能量珠" />
+	</map>
+	<map id="8" des="机械室">
+		<game names="#特殊装置领取舱" />
+	</map>
+	<map id="9" des="资料室">
+		<game names="星座档案管理" />
+	</map>
+	<map id="101" des="教官办公室">
+	</map>
+	<map id="102" des="精灵太空站">
+		<sprite petIDs="谱尼封印" />
+	</map>
+	<map id="107" des="发明室">
+		<nono names="时空穿梭芯片" />
+	</map>
+	<map id="10" difficulty="1" level="1-5" des="克洛斯星">
+		<sprite petIDs="皮皮|#闪光皮皮|#布布种子|仙人球|#小豆芽|依依" />
+		<minerals IDs="黄晶矿" />
+	</map>
+	<map id="25" difficulty="1" level="5-10" des="云霄星">
+		<sprite petIDs="毛毛|#莫比|浮空苗|小莹蜂" />
+		<minerals IDs="甲烷燃气" />
+	</map>
+	<map id="20" difficulty="1" level="11-16" des="海洋星">
+		<sprite petIDs="贝尔|#伊优|#布鲁|利牙鱼|小鳍鱼" />
+		<minerals IDs="甲烷燃气|黄晶矿" />
+	</map>
+	<map id="15" difficulty="1" level="7-21" des="火山星">
+		<sprite petIDs="火焰贝|#小火猴|吉尔|#巴多|里奥斯|赤甲虫|#格林" />
+		<minerals IDs="甲烷燃气|黄晶矿" />
+	</map>
+	<map id="30" difficulty="1" level="9-27" des="赫尔卡星">
+		<sprite petIDs="比比鼠|罗奇|果冻鸭|吉斯|#利利|#西塔|#闪光利利" />
+		<minerals IDs="藤蔓结晶" />
+		<game names="拆弹游戏" />
+	</map>
+	<map id="40" difficulty="2" level="11-33" des="塞西利亚星">
+		<sprite petIDs="卡卡|#林克|玄冰兽" />
+	</map>
+	<map id="105" difficulty="2" level="14-39" des="双子阿尔法星">
+		<sprite petIDs="迪达|加格|鲁克|#悠悠" />
+		<minerals IDs="蘑菇结晶|纳格结晶|豆豆果实" />
+	</map>
+	<map id="47" difficulty="2" level="12-45" des="双子贝塔星">
+		<sprite petIDs="莱尼|丁格|古鲁" />
+		<minerals IDs="电能石" />
+		<game names="水源补完" />
+	</map>
+	<map id="314" difficulty="4" level="70" des="拜伦号">
+		<sprite petIDs="尤纳斯|波谷|卢比|#奇塔|#卡塔" />
+	</map>
+	<map id="51" difficulty="1" level="15" des="斯诺星">
+		<sprite petIDs="达比拉|魔狮迪露|迪度|托尼" />
+		<game names="套圈大赛|勇闯冰关|雪地疾走|大脚过木桩" />
+	</map>
+	<map id="54" difficulty="2" level="13-49" des="露希欧星">
+		<sprite petIDs="阿兹|火晶兽|#晶岩兽|水草蛙" />
+		<minerals IDs="露尼亚矿石|希罗里矿石|欧古德矿石" />
+	</map>
+	<map id="57" difficulty="3" level="50-51" des="尼古尔星">
+		<sprite petIDs="米隆|查斯" />
+	</map>
+	<map id="60" difficulty="3" level="50-51" des="塔克星">
+		<sprite petIDs="伊娃|#吉宝|#斯内克|埃闻|#眼球" />
+		<game names="植物抗沙暴" />
+	</map>
+	<map id="325" difficulty="3" level="50" des="艾迪星">
+		<task taskIDs="#我是音乐小麦霸" />
+		<sprite petIDs="帕尼|乌凯|沙顿" />
+	</map>
+	<map id="328" difficulty="3" level="53-56" des="斯科尔星">
+		<sprite petIDs="弗曼|#伶俐鸟|迷你芽|#里昂" />
+		<!-- 里昂|艾米|幼镰鸟| -->
+	</map>
+	<map id="333" difficulty="3" level="53-56" des="普雷空间站">
+		<sprite petIDs="嗡嗡碟" />
+	</map>
+	<map id="338" difficulty="3" level="53-56" des="哈默星">
+		<sprite petIDs="萨拉|#乌普" />
+	</map>
+	<map id="404" difficulty="5" level="60以上" des="比格星" icon3="1">
+		<sprite petIDs="洛洛斯|#霹雳兽|#卡拉" />
+		<!-- 		<sprites>
+			<sprite name="#SPT劳克蒙德" type="" target="" />
+			<sprite name="洛洛斯" type="" target="" />
+			<sprite name="伊特" type="" target="" />
+			<sprite name="霹雳兽" type="" target="" />
+			<sprite name="拉瑞" type="" target="" />
+		</sprites> -->
+
+	</map>
+
+	<map id="411" difficulty="5" level="60以上" des="陨石地带">
+		<sprite petIDs="鲁格洛" />
+		<!-- 		<sprites>
+			<sprite name="#该隐" type="" target="" />
+			<sprite name="鲁格洛" type="" target="" />
+		</sprites> -->
+	</map>
+
+	<map id="424" difficulty="5" level="60以上" des="空间补给站">
+		<sprite petIDs="卡丹" />
+		<!-- 		<sprites>
+			<sprite name="卡丹" type="" target="" />
+		</sprites> -->
+	</map>
+
+	<map id="429" difficulty="5" level="60以上" des="拓梯星" icon2="1" icon3="1">
+		<sprite petIDs="咕咕芽" />
+		<!-- 		<sprites>
+			<sprite name="#SPT亚伦斯" type="" target="" />
+			<sprite name="咕咕芽" type="" target="" />
+			<sprite name="咕咕草" type="" target="" />
+		</sprites> -->
+	</map>
+
+	<map id="435" difficulty="5" level="60以上" des="戴斯星" icon3="1">
+		<sprite petIDs="紫炎虫" />
+		<!-- 		<sprites>
+			<sprite name="#SPT克拉尼特" type="" target="" />
+			<sprite name="咕咕芽" type="" target="" />
+			<sprite name="咕咕草" type="" target="" />
+		</sprites> -->
+	</map>
+
+	<map id="437" difficulty="5" level="60以上" des="墨杜萨星" icon3="1">
+		<sprite petIDs="丫丫" />
+		<!-- 		<sprites>
+			<sprite name="#SPT墨杜莎" type="" target="" />
+			<sprite name="丫丫" type="" target="" />
+			<sprite name="远古甲虫" type="" target="" />
+		</sprites> -->
+	</map>
+
+	<map id="439" difficulty="5" level="60以上" des="海兹尔星">
+		<sprite petIDs="波伦" />
+		<!-- 		<sprites>
+			<sprite name="波伦" type="" target="" />
+			<sprite name="波尼斯" type="" target="" />
+		</sprites> -->
+	</map>
+
+	<map id="441" difficulty="5" level="60以上" des="拉铂尔星" icon3="1">
+		<sprite petIDs="" />
+		<!-- 		<sprites>
+			<sprite name="#SPT肯佩德" type="" target="" />
+		</sprites> -->
+	</map>
+
+	<map id="459" difficulty="5" level="60以上" des="菲尔纳星">
+		<sprite petIDs="克里" />
+		<!-- 		<sprites>
+			<sprite name="克里" type="" target="" />
+			<sprite name="克罗达" type="" target="" />
+			<sprite name="德普" type="" target="" />
+		</sprites> -->
+	</map>
+
+	<map id="481" difficulty="5" level="60以上" des="般若星">
+		<sprite petIDs="泰达" />
+		<!-- 		<sprites>
+			<sprite name="#泰达" type="" target="" />
+			<sprite name="扶来" type="" target="" />
+		</sprites> -->
+	</map>
+	<map id="19" difficulty="5" level="60以上" des="提尔瑞斯星">
+		<tasks>
+			<task name="#斗者擂台" type="" target="" />
+			<task name="马西莫斯vs拉莫德斯" type="" target="" />
+		</tasks>
+	</map>
+
+	<map id="350" difficulty="5" level="60以上" des="果然星">
+	</map>
+
+	<map id="356" difficulty="5" level="60以上" des="未来星" icon2="1">
+	</map>
+
+	<map id="451" difficulty="5" level="60以上" des="格雷斯星" icon3="1">
+		<sprites>
+			<sprite name="#SPT布莱克" type="" target="" />
+		</sprites>
+	</map>
+
+	<map id="484" des="怀特星" icon3="1">
+		<sprites>
+			<sprite name="#SPT卡修斯" type="" target="" />
+			<sprite name="SPT德拉萨" type="" target="" />
+			<sprite name="SPT迪符特" type="" target="" />
+			<sprite name="邪特" type="" target="" />
+			<sprite name="巧克利" type="" target="" />
+			<sprite name="小可" type="" target="" />
+			<sprite name="卡普" type="" target="" />
+			<sprite name="康康" type="" target="" />
+		</sprites>
+		<tasks>
+			<task name="卡茨的爆发" type="" target="" />
+		</tasks>
+	</map>
+
+	<map id="494" des="麦兹星">
+		<sprites>
+			<sprite name="力亚" type="" target="" />
+			<sprite name="马力" type="" target="" />
+		</sprites>
+		<tasks>
+			<task name="卡茨的逆袭" type="" target="" />
+			<task name="卡茨的劫难" type="" target="" />
+			<task name="卡茨迷宫心境" type="" target="" />
+		</tasks>
+	</map>
+
+	<map id="497" des="SUN星">
+		<sprites>
+			<sprite name="哈喽" type="" target="" />
+			<sprite name="莱克" type="" target="" />
+		</sprites>
+		<tasks>
+			<task name="#猜拳达人本竺" type="" target="" />
+		</tasks>
+	</map>
+
+	<map id="662" difficulty="5" level="60以上" des="Y星">
+		<sprites>
+			<sprite name="#星际守护兽" type="" target="" />
+			<sprite name="玄武巴斯特" type="" target="" />
+			<sprite name="青龙朵拉格" type="" target="" />
+			<sprite name="白虎泰格尔" type="" target="" />
+			<sprite name="朱雀菲尼克斯" type="" target="" />
+		</sprites>
+	</map>
+
+	<map id="668" difficulty="5" level="60以上" des="异能星" icon3="1">
+		<sprites>
+			<sprite name="#SPT古尔扎迪" type="" target="" />
+			<sprite name="达迪拉" type="" target="" />
+		</sprites>
+		<tasks>
+			<task name="#异能精灵新发现" type="" target="" />
+		</tasks>
+	</map>
+
+	<map id="677" difficulty="5" level="60以上" des="希尔星" icon2="1">
+		<sprites>
+			<sprite name="#光明异能王" type="" target="" />
+		</sprites>
+		<tasks>
+			<task name="异能王的六重试炼" type="" target="" />
+		</tasks>
+	</map>
+
+	<map id="683" difficulty="5" level="60以上" des="泰若星" icon3="1">
+		<sprites>
+			<sprite name="#SPT暗夜冰狐" type="" target="" />
+			<sprite name="莱克" type="" target="" />
+			<sprite name="SPT皮特萨罗" type="" target="" />
+		</sprites>
+	</map>
+
+	<map id="1067" difficulty="5" level="60以上" des="神火星" icon3="1">
+		<sprites>
+		</sprites>
+	</map>
+</map>
+
+	
